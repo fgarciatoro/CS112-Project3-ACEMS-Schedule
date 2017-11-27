@@ -5,6 +5,6 @@ Public Class Member {
   
   public Member(int rank,ArrayList<Integer> availability) {
     rank = this.rank;
-    availability = this.availibility;
+    availability = this.availability;
     }
-  
+}  
