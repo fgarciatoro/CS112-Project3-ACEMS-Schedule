@@ -48,26 +48,24 @@ public class FileReader
     
     public static void printToScreen(Scanner sc){
         String nextValue = "";
-        
-        while(!checkMonth(nextValue) ){ 
+        int counter = 0;
+        while(sc.hasNext()){
             nextValue = sc.next();
-        }
-        while(sc.hasNext()){  
             if (nextValue.contains("(OK)")){
-                System.out.print("YES ");
+                System.out.print("Maybe | ");
             }else
             if (nextValue.contains("OK")){
-                System.out.print("Maybe ");
+                System.out.print(" Yes  | ");
             }else
-            /*if (nextValue.contains(" ")){
-               System.out.print("No ");
-            }else*/
+            if (nextValue == ""){
+               System.out.print(" No  | ");
+            }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
             if (nextValue.contains("Count")){
                 return;
             }else{
-                System.out.print(nextValue + "|");
+                System.out.print(nextValue);
             }
         }
     }
