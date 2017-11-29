@@ -1,10 +1,16 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
  * Class FileReader reads a .cvs (Comma Separated Value) file.
  * 
+ * The following sources were used/referenced in the making of this file:
+ *      -https://stackoverflow.com/questions/14274259/read-csv-with-scanner
+ *      -https://stackoverflow.com/questions/14721397/checking-if-a-string-is-empty-or-null-in-java
+ *      -http://www.dummies.com/programming/java/use-array-lists-in-java/
+ *      
  * @author Fernando Garcia Toro 
  * @version 11/29/2017
  */
@@ -19,6 +25,7 @@ public class FileReader
            Scanner sc = new Scanner(file);  
            sc.useDelimiter(",");
            
+           fillArrayList(sc);
            printToScreen(sc);
 
        }catch (FileNotFoundException exception){
@@ -58,7 +65,8 @@ public class FileReader
             }
         return dayFound;
     }
-    //This method prints out the file's data to the screen/calendar
+    
+    //This method prints out the file's data to the screen
     public static void printToScreen(Scanner sc){
         String nextValue = "";
         int counter = 0;
@@ -74,13 +82,13 @@ public class FileReader
             if (nextValue.contains("OK")){
                 System.out.print(" Yes  | ");
             }else
-            if (nextValue.equals("") && counter != 0){ //This isn't working
+            if (nextValue.equals("") && counter != 0){
                System.out.print(" No  | ");
             }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
             if (nextValue.contains("Count")){
-                return;
+                System.exit(0);
             }else
             if (checkMonth(nextValue)){
                 System.out.print(nextValue + " | ");
@@ -90,6 +98,42 @@ public class FileReader
             }else
             {
                 System.out.print(nextValue);
+            }
+        }
+    }
+    
+    //This method creates an ArrayList and fills it with the .csv file's data
+    public static void fillArrayList(Scanner sc){ 
+        ArrayList<String> fileData = new ArrayList<String>();
+        
+        String nextValue = "";
+        int counter = 0;
+        
+        while(sc.hasNext()){
+            nextValue = sc.next();
+            if(nextValue.contains("AM") || nextValue.contains("PM")){
+                counter++;
+            }else
+            if (nextValue.contains("(OK)")){
+                fileData.add("Maybe");
+            }else
+            if (nextValue.contains("OK")){
+                fileData.add("Yes");
+            }else
+            if (nextValue.equals("") && counter != 0){
+               fileData.add("No");
+            }else
+            if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
+            }else
+            if (nextValue.contains("Count")){
+                return;
+            }else
+            if (checkMonth(nextValue)){
+            }else
+            if (checkDay(nextValue)){
+            }else
+            {
+                fileData.add(nextValue);
             }
         }
     }
