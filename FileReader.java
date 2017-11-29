@@ -3,18 +3,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Write a description of class Test here.
+ * Class FileReader reads a .cvs (Comma Separated Value) file.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Fernando Garcia Toro 
+ * @version 11/29/2017
  */
 
 public class FileReader
 {    
     public static void main(String args[]){
        File file = new File (getFile());
+       
+       //This will not compile w/o the try-catch
        try{
-           Scanner sc = new Scanner(file);  //This will not compile w/o the try-catch
+           Scanner sc = new Scanner(file);  
            sc.useDelimiter(",");
            
            printToScreen(sc);
@@ -46,25 +48,47 @@ public class FileReader
         return monthFound;
     }
     
+    //This method checks for days in the header
+    public static boolean checkDay(String s){
+        boolean dayFound = false;
+        
+        if (s.contains("Sun") || s.contains("Mon")|| s.contains("Tue") || s.contains("Wed") ||
+        s.contains("Thu") || s.contains("Fri") || s.contains("Sat") || s.contains("August")){
+                dayFound = true;
+            }
+        return dayFound;
+    }
+    //This method prints out the file's data to the screen/calendar
     public static void printToScreen(Scanner sc){
         String nextValue = "";
         int counter = 0;
         while(sc.hasNext()){
             nextValue = sc.next();
+            if(nextValue.contains("AM") || nextValue.contains("PM")){
+                System.out.print(" " + nextValue + " |");
+                counter++;
+            }else
             if (nextValue.contains("(OK)")){
                 System.out.print("Maybe | ");
             }else
             if (nextValue.contains("OK")){
                 System.out.print(" Yes  | ");
             }else
-            if (nextValue == ""){
+            if (nextValue.equals("") && counter != 0){ //This isn't working
                System.out.print(" No  | ");
             }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
             if (nextValue.contains("Count")){
                 return;
-            }else{
+            }else
+            if (checkMonth(nextValue)){
+                System.out.print(nextValue + " | ");
+            }else
+            if (checkDay(nextValue)){
+                System.out.print(nextValue + " | ");
+            }else
+            {
                 System.out.print(nextValue);
             }
         }
