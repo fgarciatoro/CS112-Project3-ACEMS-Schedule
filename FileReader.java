@@ -103,47 +103,80 @@ public class FileReader
     }
     
     //This method creates an ArrayList and fills it with the .csv file's data
-    public static ArrayList<String> fillArrayList(Scanner sc){ 
-        ArrayList<String> fileData = new ArrayList<String>();
+    public static ArrayList<ArrayList> fillArrayList(Scanner sc){ 
+        ArrayList<ArrayList> list = new ArrayList<ArrayList>();
+        
+        //ArrayList<String> fileData = new ArrayList<String>();
         
         String nextValue = "";
-        int counter = 0;
+        
+        boolean begin = false; // This will let us know when we are done with the header
+        int counter = 0; //This will lead us through list
         
         while(sc.hasNext()){
             nextValue = sc.next();
             if(nextValue.equals("AM") || nextValue.equals("PM")){
-                counter++;
+                begin = true;
+            }else
+            if (nextValue.contains("AM") && !nextValue.equals("AM")){ //This checks and corrects the first name
+                ArrayList<String> fileData = new ArrayList<String>();
+                
+                String name = nextValue.replace('A',' ');
+                name = name.replace('M', ' ');
+                
+                list.add(fileData);
+                fileData.add(name);
+            }else
+            if ( nextValue.contains("OK") && (!nextValue.equals("(OK)")|| !nextValue.equals("OK")) ){//This checks and corrects names after the first
+                ArrayList<String> fileData = new ArrayList<String>(counter);
+                
+                String name = nextValue.replace('O',' ');
+                name = name.replace('K', ' ');
+                name = name.replace('(', ' ');
+                name = name.replace(')', ' ');
+                
+                list.add(fileData);
+                fileData.add(name);
             }else
             if (nextValue.equals("(OK)")){
-                fileData.add("Maybe");
+                ArrayList<String> fileData = new ArrayList<String>(counter);
+                fileData = list.get(counter);
+                
+                fileData.add("2");
             }else
             if (nextValue.equals("OK")){
-                fileData.add("Yes");
+                ArrayList<String> fileData = new ArrayList<String>(counter);
+                fileData = list.get(counter);
+                
+                fileData.add("0");
             }else
-            if (nextValue.equals("") && counter != 0){
-               fileData.add("No");
+            if (nextValue.equals("") && begin){
+               ArrayList<String> fileData = new ArrayList<String>(counter);
+               fileData = list.get(counter);
+                
+               fileData.add("1");
             }else
-            if (nextValue.equals("") && counter == 0){
+            if (nextValue.equals("") && begin){
             }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
             if (nextValue.contains("Count")){
-                return fileData;
+                return list;
             }else
             if (checkMonth(nextValue)){
             }else
             if (checkDay(nextValue)){
             }else
             {
-                fileData.add(nextValue);
             }
+            counter++;
         }
         
-        return fileData;
+        return list;
     }
     
     //This method prints an ArrayList
-    public static void printArrayList(ArrayList<String> fileData){
+    public static void printArrayList(ArrayList<ArrayList> fileData){
         int counter = 0;
         
         while (counter < fileData.size()){
