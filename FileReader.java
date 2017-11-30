@@ -25,8 +25,8 @@ public class FileReader
            Scanner sc = new Scanner(file);  
            sc.useDelimiter(",");
            
-           fillArrayList(sc);
-           printToScreen(sc);
+           printArrayList( fillArrayList(sc) );
+           //printToScreen(sc);
 
        }catch (FileNotFoundException exception){
        }
@@ -103,7 +103,7 @@ public class FileReader
     }
     
     //This method creates an ArrayList and fills it with the .csv file's data
-    public static void fillArrayList(Scanner sc){ 
+    public static ArrayList<String> fillArrayList(Scanner sc){ 
         ArrayList<String> fileData = new ArrayList<String>();
         
         String nextValue = "";
@@ -111,22 +111,24 @@ public class FileReader
         
         while(sc.hasNext()){
             nextValue = sc.next();
-            if(nextValue.contains("AM") || nextValue.contains("PM")){
+            if(nextValue.equals("AM") || nextValue.equals("PM")){
                 counter++;
             }else
-            if (nextValue.contains("(OK)")){
+            if (nextValue.equals("(OK)")){
                 fileData.add("Maybe");
             }else
-            if (nextValue.contains("OK")){
+            if (nextValue.equals("OK")){
                 fileData.add("Yes");
             }else
             if (nextValue.equals("") && counter != 0){
                fileData.add("No");
             }else
+            if (nextValue.equals("") && counter == 0){
+            }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
             if (nextValue.contains("Count")){
-                return;
+                return fileData;
             }else
             if (checkMonth(nextValue)){
             }else
@@ -135,6 +137,18 @@ public class FileReader
             {
                 fileData.add(nextValue);
             }
+        }
+        
+        return fileData;
+    }
+    
+    //This method prints an ArrayList
+    public static void printArrayList(ArrayList<String> fileData){
+        int counter = 0;
+        
+        while (counter < fileData.size()){
+            System.out.println( fileData.get(counter) );
+            counter++;
         }
     }
 }
