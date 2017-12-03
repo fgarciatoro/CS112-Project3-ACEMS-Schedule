@@ -119,44 +119,60 @@ public class FileReader
                 begin = true;
             }else
             if (nextValue.contains("AM") && !nextValue.equals("AM")){ //This checks and corrects the first name
-                ArrayList<String> fileData = new ArrayList<String>();
+                ArrayList<String> fileData = new ArrayList<String>(1000);
                 
-                String name = nextValue.replace('A',' ');
-                name = name.replace('M', ' ');
+                /*String name = nextValue.replace('A',' ');
+                name = name.replace('M', ' ');*/
                 
                 list.add(fileData);
-                fileData.add(name);
-            }else
-            if ( nextValue.contains("OK") && (!nextValue.equals("(OK)")|| !nextValue.equals("OK")) ){//This checks and corrects names after the first
-                ArrayList<String> fileData = new ArrayList<String>(counter);
+                //fileData.add(name);
+                fileData.add(nextValue);
                 
-                String name = nextValue.replace('O',' ');
+                counter++;
+            }else
+            if ( nextValue.contains("OK") && (!nextValue.equals("(OK)") && !nextValue.equals("OK")) ){//This checks and corrects names after the first name
+                ArrayList<String> fileData = new ArrayList<String>(1000);
+                
+                /*String name = nextValue.replace('O',' ');
                 name = name.replace('K', ' ');
                 name = name.replace('(', ' ');
-                name = name.replace(')', ' ');
+                name = name.replace(')', ' ');*/
                 
                 list.add(fileData);
-                fileData.add(name);
-            }else
-            if (nextValue.equals("(OK)")){
-                ArrayList<String> fileData = new ArrayList<String>(counter);
-                fileData = list.get(counter);
+                //fileData.add(name);
+                fileData.add(nextValue);
                 
-                fileData.add("2");
+                counter++;
             }else
-            if (nextValue.equals("OK")){
-                ArrayList<String> fileData = new ArrayList<String>(counter);
+            if (nextValue.contains("(OK)")){
+                ArrayList<String> fileData = new ArrayList<String>(1000);  //creates ArrayList of Strings that we will populate
+                
+                list.add(fileData); //adds new Arraylist to list
+                
+                fileData = list.get(counter); //Gives fileData the previous values in it's index in list
+                
+                fileData.add("2"); //fileData gets the new data value
+
+            }else
+            if (nextValue.contains("OK")){
+                ArrayList<String> fileData = new ArrayList<String>(1000);
+                
+                list.add(fileData);
+                
                 fileData = list.get(counter);
                 
                 fileData.add("0");
+
             }else
             if (nextValue.equals("") && begin){
-               ArrayList<String> fileData = new ArrayList<String>(counter);
+               ArrayList<String> fileData = new ArrayList<String>(1000);
+               
+               list.add(fileData);
+               
                fileData = list.get(counter);
                 
                fileData.add("1");
-            }else
-            if (nextValue.equals("") && begin){
+ 
             }else
             if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
             }else
@@ -169,7 +185,6 @@ public class FileReader
             }else
             {
             }
-            counter++;
         }
         
         return list;
