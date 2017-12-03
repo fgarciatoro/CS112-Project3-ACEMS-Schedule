@@ -14,6 +14,18 @@ public class Shift { // will define the number of shifts in the main method when
     }
     return toReturn;
   }
+public void defineMembers(){
+  Member newMember;
+  for(int j = 0; j < FileReader.size(); j++) {
+     ArrayList<String> eachMember = FileReader.get(j);
+     String newName = eachMember.get(0);
+    String newRank = eachMember.get(1);
+    eachMember = eachMember.remove(0);
+    eachMember = eachMember.remove(0);
+     newMember = new Member(newName, newRank, eachMember);
+    allMembers.add(newMember);
+    }
+}
   public Member find10() {
     return findMember(10);
   }
@@ -27,4 +39,4 @@ public class Shift { // will define the number of shifts in the main method when
     med10 = find10();
     med12 = find12();
     med13 = find13();
-    
+  }
