@@ -10,7 +10,6 @@ Public Class Member {
     rank = this.rank;
     availability = this.availability;
     numShifts=0;
-    Shift.allMembers+=this();
     }
   public void plusShifts(){
     numShifts++;
