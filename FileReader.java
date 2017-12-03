@@ -110,80 +110,69 @@ public class FileReader
         
         String nextValue = "";
         
-        boolean begin = false; // This will let us know when we are done with the header
-        int counter = 0; //This will lead us through list
+        boolean nameNext = false; //This will let us know when a name is coming up
+        int counter = 0;       //This will lead us through list
         
         while(sc.hasNext()){
+            ArrayList<String> fileData = new ArrayList<String>(); //creates ArrayList of Strings that we will populate
             nextValue = sc.next();
-            if(nextValue.equals("AM") || nextValue.equals("PM")){
-                begin = true;
-            }else
-            if (nextValue.contains("AM") && !nextValue.equals("AM")){ //This checks and corrects the first name
-                ArrayList<String> fileData = new ArrayList<String>(1000);
-                
-                /*String name = nextValue.replace('A',' ');
-                name = name.replace('M', ' ');*/
-                
-                list.add(fileData);
-                //fileData.add(name);
-                fileData.add(nextValue);
-                
-                counter++;
-            }else
-            if ( nextValue.contains("OK") && (!nextValue.equals("(OK)") && !nextValue.equals("OK")) ){//This checks and corrects names after the first name
-                ArrayList<String> fileData = new ArrayList<String>(1000);
-                
-                /*String name = nextValue.replace('O',' ');
-                name = name.replace('K', ' ');
-                name = name.replace('(', ' ');
-                name = name.replace(')', ' ');*/
-                
-                list.add(fileData);
-                //fileData.add(name);
-                fileData.add(nextValue);
-                
-                counter++;
-            }else
-            if (nextValue.contains("(OK)")){
-                ArrayList<String> fileData = new ArrayList<String>(1000);  //creates ArrayList of Strings that we will populate
-                
-                list.add(fileData); //adds new Arraylist to list
-                
-                fileData = list.get(counter); //Gives fileData the previous values in it's index in list
-                
-                fileData.add("2"); //fileData gets the new data value
-
-            }else
-            if (nextValue.contains("OK")){
-                ArrayList<String> fileData = new ArrayList<String>(1000);
-                
-                list.add(fileData);
-                
-                fileData = list.get(counter);
-                
-                fileData.add("0");
-
-            }else
-            if (nextValue.equals("") && begin){
-               ArrayList<String> fileData = new ArrayList<String>(1000);
-               
-               list.add(fileData);
-               
-               fileData = list.get(counter);
-                
-               fileData.add("1");
+            
+            if ( nextValue.contains("EST") ){
+                nameNext = true;
+            }
+            
+            if ( nameNext && !nextValue.contains("EST") ){
+                list.add(fileData);             //adds new Arraylist to list
  
+                fileData.add(nextValue);        //fileData gets its first data value   
+                
+                nameNext = false;
+                
+                counter++;
             }else
-            if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
+            if ( nextValue.contains("Maybe") ){
+                //list.add(fileData);
+                
+                fileData = list.get(counter - 1);  //Gives fileData the previous values in it's index in list
+
+                fileData.add("0"); 
             }else
-            if (nextValue.contains("Count")){
-                return list;
+            if ( nextValue.contains("Yes") ){   
+                //list.add(fileData);
+                
+                fileData = list.get(counter - 1);
+
+                fileData.add("1");
             }else
-            if (checkMonth(nextValue)){
+            if (nextValue.contains("No") ){  
+               //list.add(fileData);
+               
+               fileData = list.get(counter - 1);
+
+               fileData.add("-1");
             }else
-            if (checkDay(nextValue)){
+            
+            if ( nextValue.contains("Med-10") ){  
+                //list.add(fileData);
+                
+                fileData = list.get(counter - 1);
+                
+                fileData.add("10");
             }else
-            {
+            if ( nextValue.contains("Med-13") ){                          
+                //list.add(fileData);
+                
+                fileData = list.get(counter - 1);
+         
+                fileData.add("13");
+
+            }else
+            if (nextValue.contains("Med-15") ){                     
+               //list.add(fileData);
+               
+               fileData = list.get(counter - 1);
+            
+               fileData.add("15"); 
             }
         }
         
