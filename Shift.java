@@ -3,10 +3,11 @@ public class Shift { // will define the number of shifts in the main method when
   Member med10;
   Member med12;
   Member med13;
+  int shiftNum;
   static ArrayList<Member> allMembers;
   public Member findMember(int memRank) {
     for(int i = 0; i < allMembers.size(); i++);
-      if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 2 && allMembers.get(i).rank == memRank) {
+      if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 0 && allMembers.get(i).rank == memRank) {
         Member toReturn = allMembers.get(i);
         allMembers.get(i).plusShifts();
         break;
@@ -14,7 +15,7 @@ public class Shift { // will define the number of shifts in the main method when
     }
     return toReturn;
   }
-public void defineMembers(){
+public void defineMembers(){ //call this one before jasonCallThisMethod, as it makes the allMembers array list have things in it
   Member newMember;
   for(int j = 0; j < FileReader.size(); j++) {
      ArrayList<String> eachMember = FileReader.get(j);
@@ -35,8 +36,19 @@ public void defineMembers(){
   public Member find13() {
     return findMember(13);
   }
-  public Shift() {
+  public Shift(int shiftNum) {
     med10 = find10();
     med12 = find12();
     med13 = find13();
+    shiftNum=this.shiftNum;
   }
+
+public ArrayList<String> jasonCallThisMethod() {
+  ArrayList<Shift> shifts;
+  Shift newShift;
+  for(int i = 0; i < allMembers.get(0).availability.length(); i++) {
+    newShift = new Shift(i);
+    shifts.add(newShift);
+  }
+  return shifts;
+}
