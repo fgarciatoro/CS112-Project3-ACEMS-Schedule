@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 Public Class Member {
-  int rank;
-  ArrayList<Integer> availability; // 0 means not available, 1 is if needed, 2 is available
+  String name;
+  String rank;
+  ArrayList<String> availability; // 0 means yes, 1 is no, 2 is if need be
   int numShifts;
   
-  public Member(int rank,ArrayList<Integer> availability) {
+  public Member(String name, String rank,ArrayList<String> availability) {
+    name = this.name;
     rank = this.rank;
     availability = this.availability;
     numShifts=0;
