@@ -24,8 +24,8 @@ public static void defineMembers(ArrayList<ArrayList> readMe){ //call this one b
      ArrayList<String> eachMember = readMe.get(j);
      String newName = eachMember.get(0);
     String newRank = eachMember.get(1);
-    eachMember = eachMember.remove(0);
-    eachMember = eachMember.remove(0);
+    eachMember.remove(0);
+    eachMember.remove(0);
      newMember = new Member(newName, newRank, eachMember);
     allMembers.add(newMember);
     }
