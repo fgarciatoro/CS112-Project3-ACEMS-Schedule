@@ -22,24 +22,47 @@ public class calGraph  extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);            
-             
+        
+	//this makes the color behind the skeleton of the calendar     
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, BOX_WIDTH, BOX_HEIGHT);
 
-
-
-
-	//make the color behind the skeleton of the calendar
-	//month is the variable that will be inputed by the user/scanner as the start of the calendar/end of it
+	
 	//also, I need to edit the paintMonth(String s) method to be a paintDay(String s) method so that I call it for each individual day as I go through and make the Strings for the day of the  week with the date and month and such 
 
-	String month = "March";
+	    
+	ScheduleDates.ScheduleStart();
 
-	paintMonth(g, month);
+	ScheduleDates.ScheduleEnd(); 
+	     
+	String startDoW = ScheduleDates.getStartDow();
+        int startD = ScheduleDates.getStartD();
+        int startM = ScheduleDates.getStartM();
+        int startY = ScheduleDates.getStartY();
+	    
+	String endDoW = ScheduleDates.getEndDow();
+        int endD = ScheduleDates.getEndD();
+        int endM = ScheduleDates.getEndM();
+        int endY = ScheduleDates.getEndY();
+	    
+	System.out.println("This is my test: ");
+	System.out.println(startDow);
+	    System.out.println(""+startDow);
+	    System.out.println(""+startDow);
+	    System.out.println(""+startDow);
+	    
+	    System.out.println(endDow);
+	    System.out.println("" + endDow);
+	    System.out.println("" + endDow);
+	    System.out.println("" + endDow);
+	    
+	    System.out.println("End of test.");
+
+	paintMonth(g, endM);
 
 	paintCalSkeleton(g);
 	
-	paintDateStrings(g, month);
+	paintDateStrings(g, startM);
 
 
 
