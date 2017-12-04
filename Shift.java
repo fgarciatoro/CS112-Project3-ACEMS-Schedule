@@ -42,6 +42,15 @@ public void defineMembers(){ //call this one before jasonCallThisMethod, as it m
     med13 = find13();
     shiftNum=this.shiftNum;
   }
+   public String getMed10() {
+     return med10.name;
+   }
+   public String getMed12() { 
+     return med12.name;
+   }
+   public String getMed13() {
+     return med13.name;
+   }
 
 public ArrayList<String> jasonCallThisMethod() {
   ArrayList<Shift> shifts;
