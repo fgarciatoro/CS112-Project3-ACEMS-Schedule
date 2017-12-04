@@ -52,7 +52,7 @@ public static void defineMembers(){ //call this one before jasonCallThisMethod, 
      return med13.name;
    }
 
-public ArrayList<String> jasonCallThisMethod() {
+public static ArrayList<String> jasonCallThisMethod() {
   ArrayList<Shift> shifts;
   Shift newShift;
   for(int i = 0; i < allMembers.get(0).availability.length(); i++) {
