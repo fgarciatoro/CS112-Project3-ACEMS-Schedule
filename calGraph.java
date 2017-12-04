@@ -33,13 +33,31 @@ public class calGraph  extends JPanel{
 	//month is the variable that will be inputed by the user/scanner as the start of the calendar/end of it
 	//also, I need to edit the paintMonth(String s) method to be a paintDay(String s) method so that I call it for each individual day as I go through and make the Strings for the day of the  week with the date and month and such 
 
-	String month = "October";
+	String month = "March";
 
 	paintMonth(g, month);
 
 	paintCalSkeleton(g);
 	
 	paintDateStrings(g, month);
+
+
+
+	ArrayList<Shift> joshList = new ArrayList<Shift>();
+
+       	Shift.defineMembers();
+
+	joshList = Shift.jasonCallThisMethod();
+
+	//Josh, call your method and set joshList to the arraylist that you're passing me here :)
+	
+	
+
+	
+	int startDow = 1;
+	//startDow means 0 = sun, 1=mon, 2=tues, etc. This will be one fo the variables I get from Fernando's user input
+
+	printShifts(g, joshList, startDow);
 
         
     
@@ -222,8 +240,8 @@ public class calGraph  extends JPanel{
 	//all of these values will actually be passed in/pulled form other parts of the program, but for now I am initializing them so I can run the program
 
 	String startDow = "Tuesday";
-	int startD = 2;
-	int endD = 29;
+	int startD = 29;
+	int endD = 14;
 	int endY = 2017;
 		
 	//print date for each day
@@ -281,7 +299,7 @@ public class calGraph  extends JPanel{
 	   int currentDom = startD;
 	   for(int i = 0; i < daysInSched; i++){
 	       
-	       //I also need to add the date and the month to the print stmt, also I need to add a counter so that I can chang ethe y-coordinate fo rhe prints to change weeks, and I need to add more too...
+	       //I also need to add the date and the month to the print stmt, also I need to add a counter so that I can change the y-coordinate fo rhe prints to change weeks, and I need to add more too...
 	       
 	       if( (i + currentDow)%7== 1){
 	       g.setColor(Color.BLACK);
@@ -320,7 +338,7 @@ public class calGraph  extends JPanel{
 	       j+=1;
 	       }
 
-	       if(currentDom ==changeAt){
+	       if(currentDom ==(changeAt+1) ){
 		   currentDom = 1;
 
 		   if(startM.equals("December"))
@@ -358,6 +376,34 @@ public class calGraph  extends JPanel{
 
     }
     
+    public static void printShifts(Graphics g, ArrayList<Shift> joshList, int startDow){
+
+	int j = 0;
+	int Dow = startDow;
+	for(int i = 0; i < joshList.size(); i++){
+	    
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed10() , 120+ (150*Dow) , 76+152*j);
+
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed12() , 120+ (150*Dow) , 95+152*j);
+
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed13() , 120+ (150*Dow) , 114+152*j);
+	      
+
+	       Dow++;
+	       
+	       if(Dow==7){
+		   j++;
+	       }
+	}
+
+
+
+
+
+    }
     
 
     
@@ -372,3 +418,4 @@ public class calGraph  extends JPanel{
 
     
 }
+
