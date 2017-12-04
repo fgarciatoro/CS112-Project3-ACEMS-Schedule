@@ -65,3 +65,4 @@ public static ArrayList<Shift> jasonCallThisMethod() {
   }
   return shifts;
 }
+}
