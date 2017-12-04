@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 public class Shift { // will define the number of shifts in the main method when I call it
   Member med10;
   Member med12;
@@ -6,12 +7,14 @@ public class Shift { // will define the number of shifts in the main method when
   int shiftNum;
   static ArrayList<Member> allMembers;
   public Member findMember(int memRank) {
-    for(int i = 0; i < allMembers.size(); i++);
-      if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 1 && allMembers.get(i).rank == memRank) {
-        Member toReturn = allMembers.get(i);
-        allMembers.get(i).plusShifts();
-        break;
-      }
+    Random rand = new Random();
+    //for(int i = 0; i < allMembers.size(); i++);
+      //if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 1 && allMembers.get(i).rank == memRank) {
+        //Member toReturn = allMembers.get(i);
+        //allMembers.get(i).plusShifts();
+        //break;
+      //}
+    Member toReturn =  allMembers.get(rand.nextInt(allMembers.size());
     }
     return toReturn;
   }
@@ -52,7 +55,7 @@ public static void defineMembers(){ //call this one before jasonCallThisMethod, 
      return med13.name;
    }
 
-public static ArrayList<String> jasonCallThisMethod() {
+public static ArrayList<Shift> jasonCallThisMethod() {
   ArrayList<Shift> shifts;
   Shift newShift;
   for(int i = 0; i < allMembers.get(0).availability.length(); i++) {
