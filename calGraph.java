@@ -247,46 +247,51 @@ public class calGraph  extends JPanel{
 	       
 	       if( (i + startDowInt)%7== 1){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Sunday "+startMstring + " "+currentDom, 120, 57+152*j);
+	       g.drawString("Sunday "+startMstring + " "+currentDom, 110, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 2){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Monday "+startMstring + " "+currentDom, 270, 57+152*j);
+	       g.drawString("Monday "+startMstring + " "+currentDom, 260, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 3){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Tuesday "+startMstring + " "+currentDom, 420, 57+152*j);
+	       g.drawString("Tuesday "+startMstring + " "+currentDom, 410, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 4){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Wednesday "+startMstring + " "+currentDom, 570, 57+152*j);
+	       g.drawString("Wednesday "+startMstring + " "+currentDom, 560, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 5){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Thursday "+startMstring + " "+currentDom, 720, 57+152*j);
+	       g.drawString("Thursday "+startMstring + " "+currentDom, 710, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 6){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Friday "+startMstring + " "+currentDom, 870, 57+152*j);
+	       g.drawString("Friday "+startMstring + " "+currentDom, 860, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 0){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Saturday "+startMstring + " "+currentDom, 1020, 57+152*j);
+	       g.drawString("Saturday "+startMstring + " "+currentDom, 1010, 57+152*j);
 	       currentDom++;
 	       j+=1;
 	       }
 
 	       if(currentDom ==(changeAt+1) ){
 		   currentDom = 1;
-
-		   if(startMstring.equals("December"))
+		   
+		   //This boolean makes it so that the month does not hcange from December to January to Frebruary, instead it just changes from December to January and that is all
+		   boolean alreadyChanged = false;
+		       
+		   if(startMstring.equals("December")){
 		       startMstring = "January";
+		       alreadyChanged = true;
+		   }
 		   if(startMstring.equals("November"))
 		       startMstring = "December";
 		   if(startMstring.equals("October"))
@@ -307,7 +312,7 @@ public class calGraph  extends JPanel{
 		       startMstring = "April";
 		   if(startMstring.equals("February"))
 		       startMstring = "March";		
-		   if(startMstring.equals("January"))
+		   if(startMstring.equals("January") && !alreadyChanged)
 		       startMstring = "February";		  		 
 		   
 	       }
