@@ -31,9 +31,7 @@ public class calGraph  extends JPanel{
 	//also, I need to edit the paintMonth(String s) method to be a paintDay(String s) method so that I call it for each individual day as I go through and make the Strings for the day of the  week with the date and month and such 
 
 	    
-	ScheduleDates.ScheduleStart();
-
-	ScheduleDates.ScheduleEnd(); 
+	
 	     
 	String startDow = ScheduleDates.getStartDow();
         int startD = ScheduleDates.getStartD();
