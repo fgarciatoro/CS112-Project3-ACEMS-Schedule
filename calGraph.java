@@ -392,7 +392,7 @@ public class calGraph  extends JPanel{
 	
 	
 	public static String getMstring(int startM){
-		String startMstring;
+		String startMstring = "";
 		
 		if(startM==1){
 	   	startMstring = "January";
@@ -435,7 +435,7 @@ public class calGraph  extends JPanel{
 	}
 	
 	public static int getDaysInM(int startM, int y){
-		int changeAt;
+		int changeAt = 0;
 		
 		if(startM==1){
 	   	changeAt = 31;
