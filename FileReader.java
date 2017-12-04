@@ -98,7 +98,7 @@ public class FileReader
             if ( nextValue.contains("Med-12") ){                                   
                 fileData = list.get(counter - 1);
          
-                fileData.add("13");
+                fileData.add("12");
             }else
             if (nextValue.contains("Med-13") ){                                  
                fileData = list.get(counter - 1);
