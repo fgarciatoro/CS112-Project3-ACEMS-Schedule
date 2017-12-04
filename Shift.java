@@ -57,9 +57,9 @@ public static void defineMembers(ArrayList<ArrayList> readMe){ //call this one b
 
 public static ArrayList<Shift> jasonCallThisMethod() {
   defineMembers(FileReader.JoshCallThis());
-  ArrayList<Shift> shifts;
+  ArrayList<Shift> shifts = new ArrayList<Shift>();
   Shift newShift;
-  for(int i = 0; i < allMembers.get(0).availability.length(); i++) { //this is the number of shifts
+  for(int i = 0; i < allMembers.get(0).availability.size(); i++) { //this is the number of shifts
     newShift = new Shift(i);
     shifts.add(newShift);
   }
