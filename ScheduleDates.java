@@ -94,7 +94,7 @@ public class ScheduleDates
         Scanner keyboard = new Scanner(System.in);
         int endM;
         
-        System.out.println("During what month does the schedule begin? ");
+        System.out.println("During what month does the schedule end? ");
         System.out.println("Enter the month's number. (Ex: For January, enter '1' ");
         endM = keyboard.nextInt();    
         System.out.println();
