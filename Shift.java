@@ -59,7 +59,7 @@ public static ArrayList<Shift> jasonCallThisMethod() {
   defineMembers(FileReader.joshCallThis());
   ArrayList<Shift> shifts;
   Shift newShift;
-  for(int i = 0; i < allMembers.get(0).availability.length(); i++) {
+  for(int i = 0; i < allMembers.get(0).availability.length(); i++) { //this is the number of shifts
     newShift = new Shift(i);
     shifts.add(newShift);
   }
