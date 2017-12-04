@@ -7,7 +7,7 @@ public class Shift { // will define the number of shifts in the main method when
   static ArrayList<Member> allMembers;
   public Member findMember(int memRank) {
     for(int i = 0; i < allMembers.size(); i++);
-      if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 0 && allMembers.get(i).rank == memRank) {
+      if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 1 && allMembers.get(i).rank == memRank) {
         Member toReturn = allMembers.get(i);
         allMembers.get(i).plusShifts();
         break;
