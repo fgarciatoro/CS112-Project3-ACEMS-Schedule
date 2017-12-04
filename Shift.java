@@ -15,7 +15,7 @@ public class Shift { // will define the number of shifts in the main method when
         //break;
       //}
     Member toReturn =  allMembers.get(rand.nextInt(allMembers.size());
-    }
+    //}
     return toReturn;
   }
 public static void defineMembers(ArrayList<ArrayList> readMe){ //call this one before jasonCallThisMethod, as it makes the allMembers array list have things in it
