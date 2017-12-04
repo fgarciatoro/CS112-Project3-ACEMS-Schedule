@@ -48,22 +48,7 @@ public class calGraph  extends JPanel{
 	String startMstring = getMstring(startM);
 	String endMstring = getMstring(endM);
 	int changeAt = getDaysInM(startM, startY);
-	    
 	
-	    
-	System.out.println("This is my test: ");
-	System.out.println(startDow);
-	    System.out.println(""+startDow);
-	    System.out.println(""+startDow);
-	    System.out.println(""+startDow);
-	    
-	    System.out.println(endDow);
-	    System.out.println("" + endDow);
-	    System.out.println("" + endDow);
-	    System.out.println("" + endDow);
-	    
-	    System.out.println("End of test.");
-
 	paintMonth(g, endMstring);
 
 	paintCalSkeleton(g);
@@ -75,8 +60,6 @@ public class calGraph  extends JPanel{
 	joshList = Shift.jasonCallThisMethod();
 
 	printShifts(g, joshList, startDowInt);
-
-        
     
     }
    
@@ -259,7 +242,7 @@ public class calGraph  extends JPanel{
 	
 	   int j = 0;
 	   int currentDom = startD;
-	   for(int i = 0; i < daysInSched; i++){
+	   for(int i = 0; i < (daysInSched+1); i++){
 	       
 	       
 	       if( (i + startDowInt)%7== 1){
