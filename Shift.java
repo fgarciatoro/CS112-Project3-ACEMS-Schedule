@@ -18,7 +18,7 @@ public class Shift { // will define the number of shifts in the main method when
     }
     return toReturn;
   }
-public static void defineMembers(ArrayList<String> readMe){ //call this one before jasonCallThisMethod, as it makes the allMembers array list have things in it
+public static void defineMembers(ArrayList<ArrayList> readMe){ //call this one before jasonCallThisMethod, as it makes the allMembers array list have things in it
   Member newMember;
   for(int j = 0; j < readMe.size(); j++) {
      ArrayList<String> eachMember = readMe.get(j);
@@ -56,6 +56,7 @@ public static void defineMembers(ArrayList<String> readMe){ //call this one befo
    }
 
 public static ArrayList<Shift> jasonCallThisMethod() {
+  defineMembers(FileReader.joshCallThis());
   ArrayList<Shift> shifts;
   Shift newShift;
   for(int i = 0; i < allMembers.get(0).availability.length(); i++) {
