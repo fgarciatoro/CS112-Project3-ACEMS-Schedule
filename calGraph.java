@@ -46,6 +46,7 @@ public class calGraph  extends JPanel{
 	//startDow means 1 = sun, 2=mon, 3=tues, etc.
         int startDowInt = getDowInt(startDow); 
 	String startMstring = getMstring(startM);
+	String endMstring = getMstring(endM);
 	int changeAt = getDaysInM(startM, startY);
 	    
 	
@@ -63,7 +64,7 @@ public class calGraph  extends JPanel{
 	    
 	    System.out.println("End of test.");
 
-	paintMonth(g, endM);
+	paintMonth(g, endMstring);
 
 	paintCalSkeleton(g);
 	
@@ -73,7 +74,7 @@ public class calGraph  extends JPanel{
 
 	joshList = Shift.jasonCallThisMethod();
 
-	printShifts(g, joshList, startDow);
+	printShifts(g, joshList, startDowInt);
 
         
     
@@ -301,30 +302,30 @@ public class calGraph  extends JPanel{
 	       if(currentDom ==(changeAt+1) ){
 		   currentDom = 1;
 
-		   if(startM.equals("December"))
-		       startM = "January";
-		   if(startM.equals("November"))
-		       startM = "December";
-		   if(startM.equals("October"))
-		       startM = "November";
-		   if(startM.equals("September"))
-		       startM = "October";
-		   if(startM.equals("August"))
-		       startM = "September";
-		   if(startM.equals("July"))
-		       startM = "August";
-		   if(startM.equals("June"))
-		       startM = "July";
-		   if(startM.equals("May"))
-		       startM = "June";
-		   if(startM.equals("April"))
-		       startM = "May";
-		   if(startM.equals("March"))
-		       startM = "April";
-		   if(startM.equals("February"))
-		       startM = "March";		
-		   if(startM.equals("January"))
-		       startM = "February";		  		 
+		   if(startMstring.equals("December"))
+		       startMstring = "January";
+		   if(startMstring.equals("November"))
+		       startMstring = "December";
+		   if(startMstring.equals("October"))
+		       startMstring = "November";
+		   if(startMstring.equals("September"))
+		       startMstring = "October";
+		   if(startMstring.equals("August"))
+		       startMstring = "September";
+		   if(startMstring.equals("July"))
+		       startMstring = "August";
+		   if(startMstring.equals("June"))
+		       startMstring = "July";
+		   if(startMstring.equals("May"))
+		       startMstring = "June";
+		   if(startMstring.equals("April"))
+		       startMstring = "May";
+		   if(startMstring.equals("March"))
+		       startMstring = "April";
+		   if(startMstring.equals("February"))
+		       startMstring = "March";		
+		   if(startMstring.equals("January"))
+		       startMstring = "February";		  		 
 		   
 	       }
 
