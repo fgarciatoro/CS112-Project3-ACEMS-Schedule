@@ -35,12 +35,12 @@ public class calGraph  extends JPanel{
 
 	ScheduleDates.ScheduleEnd(); 
 	     
-	String startDoW = ScheduleDates.getStartDow();
+	String startDow = ScheduleDates.getStartDow();
         int startD = ScheduleDates.getStartD();
         int startM = ScheduleDates.getStartM();
         int startY = ScheduleDates.getStartY();
 	    
-	String endDoW = ScheduleDates.getEndDow();
+	String endDow = ScheduleDates.getEndDow();
         int endD = ScheduleDates.getEndD();
         int endM = ScheduleDates.getEndM();
         int endY = ScheduleDates.getEndY();
