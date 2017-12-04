@@ -32,6 +32,14 @@ public class FileReader
        }
     }
     
+    //Jason  wrote this new method so that Josh can get your arraylist stuff :) 
+    public static ArrayList<ArrayList> joshCallThis(){
+        
+        return fillArrayList(sc);
+     
+    }
+    
+    
     //This method will get us the name of the file
     public static String getFile(){
        Scanner keyboard = new Scanner(System.in); 
