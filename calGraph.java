@@ -45,6 +45,8 @@ public class calGraph  extends JPanel{
 	    
 	//startDow means 1 = sun, 2=mon, 3=tues, etc.
         int startDowInt = getDowInt(startDow); 
+	String startMstring = getMstring(startM);
+	int changeAt = getDaysInM(startM, startY);
 	    
 	
 	    
@@ -65,7 +67,7 @@ public class calGraph  extends JPanel{
 
 	paintCalSkeleton(g);
 	
-	paintDateStrings(g, startDowInt, startM, startD, startDow, startY, endM, endD, endY);
+	paintDateStrings(g, startDowInt, startM, startMstring, changeAt, startD, startDow, startY, endM, endD, endY);
 
 	ArrayList<Shift> joshList = new ArrayList<Shift>();
 
@@ -249,66 +251,7 @@ public class calGraph  extends JPanel{
 
     }
 
-    public static void paintDateStrings(Graphics g, int startDowInt, int startM, int startD, String startDow, int startY, int endM, int endD, int endY){
-
-	
-	//print date for each day
-	
-	    
-
-	//changeAt is the variable I use to know when the date counter should change at the end of the month and make string for month
-	String startMstring;
-	int changeAt = 0;
-        if(startM==1){
-	   startMstring = "January";
-           changeAt = 31;
-	}
-	if(startM==2){
-           startMstring = "February";
-	   changeAt = 28;
-	   if( (endY + 2016)%4 ==0 )
-	       changeAt = 29;
-	}
-	if(startM==3){
-           startMstring = "March";
-	   changeAt = 31;
-	}
-        if(startM==4){
-	   startMstring = "April";
-           changeAt = 30;
-	}
-        if(startM==5){
-	   startMstring = "May";	
-	   changeAt = 31;
-	}
-        if(startM==6){
-	   startMstring = "June";	
-	   changeAt = 30;
-	}
-	if(startM==7){
-	   startMstring = "July";	
-	   changeAt = 31;
-	}
-        if(startM==8){
-	   startMstring = "August";	
-	   changeAt = 31;
-	}
-	if(startM==9){
-	   startMstring = "September";	
-	   changeAt = 30;
-	}
-        if(startM==10){
-	 startMstring = "October";	
-	   changeAt = 31;
-	}
-        if(startM==11){
-	 startMstring = "November";	
-	   changeAt = 30;
-	}
-	if(startM==12){
-	   startMstring = "December";	
-	   changeAt = 31;
-	}
+    public static void paintDateStrings(Graphics g, int startDowInt, int startM, String startMstring, int changeAt, int startD, String startDow, int startY, int endM, int endD, int endY){
 
 	   int daysInSched = 0;
 	   daysInSched = (changeAt - startD) + endD;        
@@ -445,6 +388,99 @@ public class calGraph  extends JPanel{
 	   return dow;
    }
 
+	
+	
+	public static String getMstring(int startM){
+		String startMstring;
+		
+		if(startM==1){
+	   	startMstring = "January";
+		}
+		if(startM==2){
+          	 startMstring = "February";
+		}
+		if(startM==3){
+           	startMstring = "March";
+		}
+     	 	if(startM==4){
+	 	startMstring = "April";
+		}
+        	if(startM==5){
+	   	startMstring = "May";	
+		}
+        	if(startM==6){
+	   	startMstring = "June";	
+		}
+		if(startM==7){
+	        startMstring = "July";	
+		}
+      	        if(startM==8){
+	        startMstring = "August";	
+		}
+		if(startM==9){
+	   	startMstring = "September";	
+		}
+        	if(startM==10){
+	        startMstring = "October";	
+		}
+        	if(startM==11){
+	 	startMstring = "November";	
+		}
+		if(startM==12){
+	  	startMstring = "December";	
+		}
+	return startMstring;	
+		
+	}
+	
+	public static int getDaysInM(int startM, int y){
+		int changeAt;
+		
+		if(startM==1){
+	   	changeAt = 31;
+		}
+		if(startM==2){
+          	changeAt = 31;
+			if( (y + 2016)%4 ==0 ){
+	        	changeAt = 29;
+			}
+		}
+		if(startM==3){
+           	changeAt = 31;
+		}
+     	 	if(startM==4){
+	 	changeAt = 30;
+		}
+        	if(startM==5){
+	   	changeAt = 31;	
+		}
+        	if(startM==6){
+	   	changeAt = 30;	
+		}
+		if(startM==7){
+	        changeAt = 31;	
+		}
+      	        if(startM==8){
+	        changeAt = 31;	
+		}
+		if(startM==9){
+	   	changeAt = 30;	
+		}
+        	if(startM==10){
+	        changeAt = 31;	
+		}
+        	if(startM==11){
+	 	changeAt = 30;	
+		}
+		if(startM==12){
+	  	changeAt = 31;	
+		}
+			
+		return changeAt;
+	}
+	
+	
+	
     
 
      public static void main(String args[]){
