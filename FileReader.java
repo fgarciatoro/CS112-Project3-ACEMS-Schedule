@@ -32,13 +32,23 @@ public class FileReader
        }
     }
     
-    //Jason  wrote this new method so that Josh can get your arraylist stuff :) 
-    public static ArrayList<ArrayList> joshCallThis(){
+    public static ArrayList<ArrayList> JoshCallThis (){
+       ArrayList<ArrayList> list = new ArrayList<ArrayList>();
         
-        return fillArrayList(sc);
-     
+       File file = new File (getFile());
+        
+        try{
+           Scanner sc = new Scanner(file);  
+           sc.useDelimiter(",");
+           
+          
+           list = fillArrayList(sc);
+           
+           return list;
+       }catch (FileNotFoundException exception){
+       }
+       return list;
     }
-    
     
     //This method will get us the name of the file
     public static String getFile(){
@@ -51,70 +61,9 @@ public class FileReader
        return fileName;
     }
     
-    //This method checks for the month in the header
-    public static boolean checkMonth(String s){
-        boolean monthFound = false;
-        
-        if (s.contains("January") || s.contains("February")|| s.contains("March") || s.contains("April") ||
-        s.contains("May") || s.contains("June") || s.contains("July") || s.contains("August") ||
-        s.contains("September") || s.contains("October") || s.contains("November") || s.contains("December")){
-                monthFound = true;
-            }
-        return monthFound;
-    }
-    
-    //This method checks for days in the header
-    public static boolean checkDay(String s){
-        boolean dayFound = false;
-        
-        if (s.contains("Sun") || s.contains("Mon")|| s.contains("Tue") || s.contains("Wed") ||
-        s.contains("Thu") || s.contains("Fri") || s.contains("Sat") || s.contains("August")){
-                dayFound = true;
-            }
-        return dayFound;
-    }
-    
-    //This method prints out the file's data to the screen
-    public static void printToScreen(Scanner sc){
-        String nextValue = "";
-        int counter = 0;
-        while(sc.hasNext()){
-            nextValue = sc.next();
-            if(nextValue.contains("AM") || nextValue.contains("PM")){
-                System.out.print(" " + nextValue + " |");
-                counter++;
-            }else
-            if (nextValue.contains("(OK)")){
-                System.out.print("Maybe | ");
-            }else
-            if (nextValue.contains("OK")){
-                System.out.print(" Yes  | ");
-            }else
-            if (nextValue.equals("") && counter != 0){
-               System.out.print(" No  | ");
-            }else
-            if (nextValue.contains("Scheduling") || nextValue.contains("Poll") || nextValue.contains("doodle")){
-            }else
-            if (nextValue.contains("Count")){
-                System.exit(0);
-            }else
-            if (checkMonth(nextValue)){
-                System.out.print(nextValue + " | ");
-            }else
-            if (checkDay(nextValue)){
-                System.out.print(nextValue + " | ");
-            }else
-            {
-                System.out.print(nextValue);
-            }
-        }
-    }
-    
     //This method creates an ArrayList and fills it with the .csv file's data
     public static ArrayList<ArrayList> fillArrayList(Scanner sc){ 
         ArrayList<ArrayList> list = new ArrayList<ArrayList>();
-        
-        //ArrayList<String> fileData = new ArrayList<String>();
         
         String nextValue = "";
         
@@ -167,7 +116,7 @@ public class FileReader
                 
                 fileData.add("10");
             }else
-            if ( nextValue.contains("Med-13") ){                          
+            if ( nextValue.contains("Med-12") ){                          
                 //list.add(fileData);
                 
                 fileData = list.get(counter - 1);
@@ -175,12 +124,12 @@ public class FileReader
                 fileData.add("13");
 
             }else
-            if (nextValue.contains("Med-15") ){                     
+            if (nextValue.contains("Med-13") ){                     
                //list.add(fileData);
                
                fileData = list.get(counter - 1);
             
-               fileData.add("15"); 
+               fileData.add("13"); 
             }
         }
         
