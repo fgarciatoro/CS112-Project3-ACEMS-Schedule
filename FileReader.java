@@ -32,8 +32,8 @@ public class FileReader
        }
     }
     
-    public static ArrayList<ArrayList> JoshCallThis (){
-       ArrayList<ArrayList> list = new ArrayList<ArrayList>();
+    public static ArrayList<ArrayList<String>> JoshCallThis (){
+       ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
         
        File file = new File (getFile());
         
@@ -62,8 +62,8 @@ public class FileReader
     }
     
     //This method creates an ArrayList and fills it with the .csv file's data
-    public static ArrayList<ArrayList> fillArrayList(Scanner sc){ 
-        ArrayList<ArrayList> list = new ArrayList<ArrayList>();
+    public static ArrayList<ArrayList<String>> fillArrayList(Scanner sc){ 
+        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
         
         String nextValue = "";
         
@@ -87,46 +87,34 @@ public class FileReader
                 
                 counter++;
             }else
-            if ( nextValue.contains("Maybe") ){
-                //list.add(fileData);
-                
+            if ( nextValue.contains("Maybe") ){               
                 fileData = list.get(counter - 1);  //Gives fileData the previous values in it's index in list
 
                 fileData.add("0"); 
             }else
-            if ( nextValue.contains("Yes") ){   
-                //list.add(fileData);
-                
+            if ( nextValue.contains("Yes") ){            
                 fileData = list.get(counter - 1);
 
                 fileData.add("1");
             }else
             if (nextValue.contains("No") ){  
-               //list.add(fileData);
-               
                fileData = list.get(counter - 1);
 
                fileData.add("-1");
             }else
             
-            if ( nextValue.contains("Med-10") ){  
-                //list.add(fileData);
-                
+            if ( nextValue.contains("Med-10") ){            
                 fileData = list.get(counter - 1);
                 
                 fileData.add("10");
             }else
-            if ( nextValue.contains("Med-12") ){                          
-                //list.add(fileData);
-                
+            if ( nextValue.contains("Med-12") ){                                   
                 fileData = list.get(counter - 1);
          
                 fileData.add("13");
 
             }else
-            if (nextValue.contains("Med-13") ){                     
-               //list.add(fileData);
-               
+            if (nextValue.contains("Med-13") ){                                  
                fileData = list.get(counter - 1);
             
                fileData.add("13"); 
@@ -137,7 +125,7 @@ public class FileReader
     }
     
     //This method prints an ArrayList
-    public static void printArrayList(ArrayList<ArrayList> fileData){
+    public static void printArrayList(ArrayList<ArrayList<String>> fileData){
         int counter = 0;
         
         while (counter < fileData.size()){
