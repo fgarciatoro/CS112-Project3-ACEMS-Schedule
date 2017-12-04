@@ -14,7 +14,7 @@ public class Shift { // will define the number of shifts in the main method when
         //allMembers.get(i).plusShifts();
         //break;
       //}
-    Member toReturn =  allMembers.get(rand.nextInt(allMembers.size());
+    Member toReturn =  allMembers.get(rand.nextInt(allMembers.size()));
     //}
     return toReturn;
   }
