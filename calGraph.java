@@ -45,13 +45,7 @@ public class calGraph  extends JPanel{
 
 	ArrayList<Shift> joshList = new ArrayList<Shift>();
 
-       	Shift.defineMembers();
-
 	joshList = Shift.jasonCallThisMethod();
-
-	//Josh, call your method and set joshList to the arraylist that you're passing me here :)
-	
-	
 
 	
 	int startDow = 1;
