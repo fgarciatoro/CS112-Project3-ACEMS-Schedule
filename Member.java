@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-Public Class Member {
+public class Member {
   String name;
   String rank;
   ArrayList<String> availability; // 1 means yes, -1 is no, 0 is if need be
