@@ -21,7 +21,7 @@ public class ScheduleDates
     public static String getStartDow(){
         Scanner keyboard = new Scanner(System.in); 
         
-        String startDow;
+        String startDow = "";
        
         System.out.println("On what day of the week does the schedule start? (Ex: Monday) ");
         startDoW = keyboard.nextLine();
@@ -70,7 +70,7 @@ public class ScheduleDates
     public static String getEndDow(){
         Scanner keyboard = new Scanner(System.in); 
         
-        String endDow;
+        String endDow = "";
         
         System.out.println("On what day of the week does the schedule end? (Ex: Friday) ");
         endDoW = keyboard.nextLine();
