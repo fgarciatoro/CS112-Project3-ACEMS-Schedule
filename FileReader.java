@@ -16,40 +16,7 @@ import java.io.FileNotFoundException;
  */
 
 public class FileReader
-{    
-    public static void main(String args[]){
-       File file = new File (getFile());
-       
-       //This will not compile w/o the try-catch
-       try{
-           Scanner sc = new Scanner(file);  
-           sc.useDelimiter(",");
-           
-           printArrayList( fillArrayList(sc) );
-           //printToScreen(sc);
-
-       }catch (FileNotFoundException exception){
-       }
-    }
-    
-    public static ArrayList<ArrayList<String>> JoshCallThis (){
-       ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
-        
-       File file = new File (getFile());
-        
-        try{
-           Scanner sc = new Scanner(file);  
-           sc.useDelimiter(",");
-           
-          
-           list = fillArrayList(sc);
-           
-           return list;
-       }catch (FileNotFoundException exception){
-       }
-       return list;
-    }
-    
+{          
     //This method will get us the name of the file
     public static String getFile(){
        Scanner keyboard = new Scanner(System.in); 
@@ -60,6 +27,24 @@ public class FileReader
        
        return fileName;
     }
+        
+    //This is the method that should be called in order to retrieve the ArrayList filled with data
+    public static ArrayList<ArrayList<String>> JoshCallThis (){
+       ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+        
+       File file = new File (getFile());
+        
+        try{
+           Scanner sc = new Scanner(file);  
+           sc.useDelimiter(",");
+             
+           list = fillArrayList(sc);
+           
+           return list;
+       }catch (FileNotFoundException exception){
+       }
+       return list;
+    }
     
     //This method creates an ArrayList and fills it with the .csv file's data
     public static ArrayList<ArrayList<String>> fillArrayList(Scanner sc){ 
@@ -67,28 +52,30 @@ public class FileReader
         
         String nextValue = "";
         
-        boolean nameNext = false; //This will let us know when a name is coming up
-        int counter = 0;       //This will lead us through list
+        boolean nameNext = false;   //This will let us know when a name is coming up
+        int counter = 0;            //This will lead us through list
         
         while(sc.hasNext()){
             ArrayList<String> fileData = new ArrayList<String>(); //creates ArrayList of Strings that we will populate
             nextValue = sc.next();
             
+            //"EST" is found in every data value preceding a name, this checks for it
             if ( nextValue.contains("EST") ){
                 nameNext = true;
             }
+            
             
             if ( nameNext && !nextValue.contains("EST") ){
                 list.add(fileData);             //adds new Arraylist to list
  
                 fileData.add(nextValue);        //fileData gets its first data value   
                 
-                nameNext = false;
+                nameNext = false;               //resets for the next name value
                 
                 counter++;
             }else
             if ( nextValue.contains("Maybe") ){               
-                fileData = list.get(counter - 1);  //Gives fileData the previous values in it's index in list
+                fileData = list.get(counter - 1);  //Gives fileData the previous values in its index in list
 
                 fileData.add("0"); 
             }else
@@ -112,7 +99,6 @@ public class FileReader
                 fileData = list.get(counter - 1);
          
                 fileData.add("13");
-
             }else
             if (nextValue.contains("Med-13") ){                                  
                fileData = list.get(counter - 1);
@@ -123,8 +109,9 @@ public class FileReader
         
         return list;
     }
+        
     
-    //This method prints an ArrayList
+    //This method prints the ArrayList, it used for debugging
     public static void printArrayList(ArrayList<ArrayList<String>> fileData){
         int counter = 0;
         
@@ -132,5 +119,24 @@ public class FileReader
             System.out.println( fileData.get(counter) );
             counter++;
         }
+    }  
+    
+    //The main method is used for testing the functionality of all methods in the class
+    public static void main(String args[]){
+       File file = new File (getFile());
+       
+       //This will not compile w/o the try-catch
+       try{
+           Scanner sc = new Scanner(file);  
+           sc.useDelimiter(",");
+           
+           printArrayList( fillArrayList(sc) );
+           
+           System.out.println();
+           
+           printArrayList( JoshCallThis() );
+
+       }catch (FileNotFoundException exception){
+       }
     }
 }
