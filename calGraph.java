@@ -45,6 +45,11 @@ public class calGraph  extends JPanel{
         int endM = ScheduleDates.getEndM();
         int endY = ScheduleDates.getEndY();
 	    
+	//startDow means 1 = sun, 2=mon, 3=tues, etc.
+        int startDowInt = getDowInt(startDow); 
+	    
+	
+	    
 	System.out.println("This is my test: ");
 	System.out.println(startDow);
 	    System.out.println(""+startDow);
@@ -62,17 +67,11 @@ public class calGraph  extends JPanel{
 
 	paintCalSkeleton(g);
 	
-	paintDateStrings(g, startM);
-
-
+	paintDateStrings(g, startDowInt, startM, startD, startDow, startY, endM, endD, endY);
 
 	ArrayList<Shift> joshList = new ArrayList<Shift>();
 
 	joshList = Shift.jasonCallThisMethod();
-
-	
-	int startDow = 1;
-	//startDow means 0 = sun, 1=mon, 2=tues, etc. This will be one fo the variables I get from Fernando's user input
 
 	printShifts(g, joshList, startDow);
 
@@ -252,62 +251,66 @@ public class calGraph  extends JPanel{
 
     }
 
-    public static void paintDateStrings(Graphics g, String startM){
+    public static void paintDateStrings(Graphics g, int startDowInt, int startM, int startD, String startDow, int startY, int endM, int endD, int endY){
 
-	//all of these values will actually be passed in/pulled form other parts of the program, but for now I am initializing them so I can run the program
-
-	String startDow = "Tuesday";
-	int startD = 29;
-	int endD = 14;
-	int endY = 2017;
-		
+	
 	//print date for each day
-	// startDow (start day of week) is a string variable that is passed in for the start of the schdeyle. I will need a user input at the beginning of the program that says the schedule goes from Monday November 27 2017 to Tuesday December 13 2017 for example
-	int currentDow = 0;
-        if(startDow.equals("Sunday"))
-	   currentDow = 1;
-	if(startDow.equals("Monday"))
-	   currentDow = 2;
-	if(startDow.equals("Tuesday"))
-	   currentDow = 3;
-      	if(startDow.equals("Wednesday"))
-	   currentDow = 4;
-	if(startDow.equals("Thursday"))
-	   currentDow = 5;
-	if(startDow.equals("Friday"))
-	   currentDow = 6;
-	if(startDow.equals("Saturday"))
-	   currentDow = 7;
+	
+	    
 
-	//changeAt is the variable I use to know when the date counter should change at the end of the month
+	//changeAt is the variable I use to know when the date counter should change at the end of the month and make string for month
+	String startMstring;
 	int changeAt = 0;
-        if(startM.equals("January"))
-	   changeAt = 31;
-	if(startM.equals("February")){
+        if(startM==1){
+	   startMstring = "January";
+           changeAt = 31;
+	}
+	if(startM==2){
+           startMstring = "February";
 	   changeAt = 28;
 	   if( (endY + 2016)%4 ==0 )
 	       changeAt = 29;
 	}
-	if(startM.equals("March"))
+	if(startM==3){
+           startMstring = "March";
 	   changeAt = 31;
-        if(startM.equals("April"))
+	}
+        if(startM==4){
+	   startMstring = "April";
+           changeAt = 30;
+	}
+        if(startM==5){
+	   startMstring = "May";	
+	   changeAt = 31;
+	}
+        if(startM==6){
+	   startMstring = "June";	
 	   changeAt = 30;
-        if(startM.equals("May"))
+	}
+	if(startM==7){
+	   startMstring = "July";	
 	   changeAt = 31;
-        if(startM.equals("June"))
+	}
+        if(startM==8){
+	   startMstring = "August";	
+	   changeAt = 31;
+	}
+	if(startM==9){
+	   startMstring = "September";	
 	   changeAt = 30;
-	if(startM.equals("July"))
+	}
+        if(startM==10){
+	 startMstring = "October";	
 	   changeAt = 31;
-        if(startM.equals("August"))
-	   changeAt = 31;
-	if(startM.equals("September"))
+	}
+        if(startM==11){
+	 startMstring = "November";	
 	   changeAt = 30;
-        if(startM.equals("October"))
+	}
+	if(startM==12){
+	   startMstring = "December";	
 	   changeAt = 31;
-        if(startM.equals("November"))
-	   changeAt = 30;
-	if(startM.equals("December"))
-	   changeAt = 31;
+	}
 
 	   int daysInSched = 0;
 	   daysInSched = (changeAt - startD) + endD;        
@@ -316,41 +319,40 @@ public class calGraph  extends JPanel{
 	   int currentDom = startD;
 	   for(int i = 0; i < daysInSched; i++){
 	       
-	       //I also need to add the date and the month to the print stmt, also I need to add a counter so that I can change the y-coordinate fo rhe prints to change weeks, and I need to add more too...
 	       
-	       if( (i + currentDow)%7== 1){
+	       if( (i + startDowInt)%7== 1){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Sunday "+startM + " "+currentDom, 120, 57+152*j);
+	       g.drawString("Sunday "+startMstring + " "+currentDom, 120, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 2){
+	       if( (i + startDowInt)%7== 2){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Monday "+startM + " "+currentDom, 270, 57+152*j);
+	       g.drawString("Monday "+startMstring + " "+currentDom, 270, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 3){
+	       if( (i + startDowInt)%7== 3){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Tuesday "+startM + " "+currentDom, 420, 57+152*j);
+	       g.drawString("Tuesday "+startMstring + " "+currentDom, 420, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 4){
+	       if( (i + startDowInt)%7== 4){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Wednesday "+startM + " "+currentDom, 570, 57+152*j);
+	       g.drawString("Wednesday "+startMstring + " "+currentDom, 570, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 5){
+	       if( (i + startDowInt)%7== 5){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Thursday "+startM + " "+currentDom, 720, 57+152*j);
+	       g.drawString("Thursday "+startMstring + " "+currentDom, 720, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 6){
+	       if( (i + startDowInt)%7== 6){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Friday "+startM + " "+currentDom, 870, 57+152*j);
+	       g.drawString("Friday "+startMstring + " "+currentDom, 870, 57+152*j);
 	       currentDom++;
 	       }
-	       if( (i + currentDow)%7== 0){
+	       if( (i + startDowInt)%7== 0){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Saturday "+startM + " "+currentDom, 1020, 57+152*j);
+	       g.drawString("Saturday "+startMstring + " "+currentDom, 1020, 57+152*j);
 	       currentDom++;
 	       j+=1;
 	       }
@@ -416,12 +418,34 @@ public class calGraph  extends JPanel{
 	       }
 	}
 
-
-
-
-
     }
     
+   public static int getDowInt(String stringDow){
+	  int dow = 0;
+	   if(stringDow.equals("Sunday") ){
+		   dow = 1;
+	   }
+	   if(stringDow.equals("Monday") ){
+		   dow = 2;
+	   }
+	   if(stringDow.equals("Tuesday") ){
+		   dow = 3;
+	   }
+	   if(stringDow.equals("Wednesday") ){
+		   dow = 4;
+	   }
+	   if(stringDow.equals("Thursday") ){
+		   dow = 5;
+	   }
+	   if(stringDow.equals("Friday") ){
+		   dow = 6;
+	   }
+	   if(stringDow.equals("Saturday") ){
+		   dow = 7;
+	   }
+	   
+	   return dow;
+   }
 
     
 
