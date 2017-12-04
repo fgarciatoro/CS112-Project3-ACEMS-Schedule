@@ -247,37 +247,37 @@ public class calGraph  extends JPanel{
 	       
 	       if( (i + startDowInt)%7== 1){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Sunday "+startMstring + " "+currentDom, 110, 57+152*j);
+	       g.drawString("Sun. "+startMstring + " "+currentDom, 110, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 2){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Monday "+startMstring + " "+currentDom, 260, 57+152*j);
+	       g.drawString("Mon. "+startMstring + " "+currentDom, 260, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 3){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Tuesday "+startMstring + " "+currentDom, 410, 57+152*j);
+	       g.drawString("Tue. "+startMstring + " "+currentDom, 410, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 4){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Wednesday "+startMstring + " "+currentDom, 560, 57+152*j);
+	       g.drawString("Wed. "+startMstring + " "+currentDom, 560, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 5){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Thursday "+startMstring + " "+currentDom, 710, 57+152*j);
+	       g.drawString("Thu. "+startMstring + " "+currentDom, 710, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 6){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Friday "+startMstring + " "+currentDom, 860, 57+152*j);
+	       g.drawString("Fri. "+startMstring + " "+currentDom, 860, 57+152*j);
 	       currentDom++;
 	       }
 	       if( (i + startDowInt)%7== 0){
 	       g.setColor(Color.BLACK);
-	       g.drawString("Saturday "+startMstring + " "+currentDom, 1010, 57+152*j);
+	       g.drawString("Sat. "+startMstring + " "+currentDom, 1010, 57+152*j);
 	       currentDom++;
 	       j+=1;
 	       }
