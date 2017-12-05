@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
  *      -http://www.dummies.com/programming/java/use-array-lists-in-java/
  *      
  * @author Fernando Garcia Toro 
- * @version 11/29/2017
+ * @version 12/05/2017
  */
 
 public class FileReader
@@ -30,17 +30,18 @@ public class FileReader
         
     //This is the method that should be called in order to retrieve the ArrayList filled with data
     public static ArrayList<ArrayList<String>> JoshCallThis (){
-       ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+       ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(); //creates an ArrayList of String ArraayLists
         
-       File file = new File (getFile());
-        
+       File file = new File (getFile());  //gives us the name of the file to use
+       
+       //It is necessary to catch an exception in case the file cannot be found
         try{
-           Scanner sc = new Scanner(file);  
-           sc.useDelimiter(",");
+           Scanner sc = new Scanner(file);
+           sc.useDelimiter(",");             //we are using .csv (comma separated value) files exclusively
              
-           list = fillArrayList(sc);
+           list = fillArrayList(sc);        //fills the ArrayList
            
-           return list;
+           return list;                     //outputs the ArrayList
        }catch (FileNotFoundException exception){
        }
        return list;
@@ -64,7 +65,7 @@ public class FileReader
                 nameNext = true;
             }
             
-            
+            //Only true for the data value after the timestamp, this data value will always be the name
             if ( nameNext && !nextValue.contains("EST") ){
                 list.add(fileData);             //adds new Arraylist to list
  
@@ -74,6 +75,8 @@ public class FileReader
                 
                 counter++;
             }else
+            
+            //These check for and record responses, No = -1, Maybe = 0, Yes = 1
             if ( nextValue.contains("Maybe") ){               
                 fileData = list.get(counter - 1);  //Gives fileData the previous values in its index in list
 
@@ -90,6 +93,7 @@ public class FileReader
                fileData.add("-1");
             }else
             
+            //These check for and record rank
             if ( nextValue.contains("Med-10") ){            
                 fileData = list.get(counter - 1);
                 
@@ -105,8 +109,7 @@ public class FileReader
             
                fileData.add("13"); 
             }
-        }
-        
+        }       
         return list;
     }
         
