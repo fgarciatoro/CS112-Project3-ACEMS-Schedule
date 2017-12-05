@@ -33,7 +33,7 @@ public class calGraph  extends JPanel{
 	    
 	
 	     
-	String startDow = ScheduleDates.getStartDow();
+		String startDow = ScheduleDates.getStartDow();
         int startD = ScheduleDates.getStartD();
         int startM = ScheduleDates.getStartM();
         int startY = ScheduleDates.getStartY();
@@ -49,7 +49,9 @@ public class calGraph  extends JPanel{
 	String endMstring = getMstring(endM);
 	int changeAt = getDaysInM(startM, startY);
 	
-	paintMonth(g, endMstring);
+
+	
+       	paintMonth(g, endMstring);
 
 	paintCalSkeleton(g);
 	
@@ -57,7 +59,7 @@ public class calGraph  extends JPanel{
 
 	ArrayList<Shift> joshList = new ArrayList<Shift>();
 
-	joshList = Shift.jasonCallThisMethod();
+	joshList = Shift.allShifts();
 
 	printShifts(g, joshList, startDowInt);
     
@@ -325,26 +327,50 @@ public class calGraph  extends JPanel{
 
     }
     
-    public static void printShifts(Graphics g, ArrayList<Shift> joshList, int startDow){
+    public static void printShifts(Graphics g, ArrayList<Shift> joshList, int startDowInt){
 
+	//for this program, this works assuming that the schedule start on an AM shift every time
 	int j = 0;
-	int Dow = startDow;
+	int ampm = 2;
 	for(int i = 0; i < joshList.size(); i++){
-	    
+
+	    if( (ampm % 2) == 0){
 	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed10() , 120+ (150*Dow) , 76+152*j);
+	       g.drawString( joshList.get(i).getMed10() , 120+ (150* (startDowInt-1) ) , 76+152*j);
 
 	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed12() , 120+ (150*Dow) , 95+152*j);
+	       g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) , 95+152*j);
 
 	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed13() , 120+ (150*Dow) , 114+152*j);
+	       g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 114+152*j);
 	      
+			      
+	       ampm++;
+	    }
 
-	       Dow++;
+	   else{
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed10() , 120+ (150* (startDowInt-1) ) , 133+152*j);
+
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) ,152+152*j);
+
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 171+152*j);
+
 	       
-	       if(Dow==7){
+	       ampm++;
+	       startDowInt++;
+		
+	    }
+
+	       
+
+	      
+	       
+	       if(startDowInt==7){
 		   j++;
+		   startDowInt = 1;
 	       }
 	}
 
@@ -482,4 +508,3 @@ public class calGraph  extends JPanel{
 
     
 }
-
