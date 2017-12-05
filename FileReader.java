@@ -29,7 +29,7 @@ public class FileReader
     }
         
     //This is the method that should be called in order to retrieve the ArrayList filled with data
-    public static ArrayList<ArrayList<String>> JoshCallThis (){
+    public static ArrayList<ArrayList<String>> output(){
        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(); //creates an ArrayList of String ArraayLists
         
        File file = new File (getFile());  //gives us the name of the file to use
@@ -68,10 +68,11 @@ public class FileReader
             //Only true for the data value after the timestamp, this data value will always be the name
             if ( nameNext && !nextValue.contains("EST") ){
                 list.add(fileData);             //adds new Arraylist to list
- 
-                fileData.add(nextValue);        //fileData gets its first data value   
                 
-                nameNext = false;               //resets for the next name value
+                String name = nextValue.replace('"',' '); //gets rid of quotation marks that GooglForms adds to names
+                fileData.add(name);              //fileData gets its first data value   
+                
+                nameNext = false;                //resets for the next name value
                 
                 counter++;
             }else
@@ -137,7 +138,7 @@ public class FileReader
            
            System.out.println();
            
-           printArrayList( JoshCallThis() );
+           printArrayList( output() );
 
        }catch (FileNotFoundException exception){
        }
