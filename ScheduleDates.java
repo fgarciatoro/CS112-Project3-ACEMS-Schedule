@@ -1,75 +1,62 @@
 import java.util.Scanner;
+
 /**
- * Class ScheduleDates
+ * Class ScheduleDates asks for and records the day, month, year, and day of the week that schedules start and end
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Fernando Garcia Toro, Jason Greenfield
+ * @version 12/5/2017
  */
 public class ScheduleDates
-{
-
-    /**
-     * Constructor for objects of class ScheduleStart
-     */
-    public static void main(String args[])
-    {
-       // ScheduleStart();
-        //ScheduleEnd();
-    }
+{    
+    static Scanner keyboard = new Scanner(System.in); //Creates scanner to be used in all methods
     
-    //These asks for and records the day, month, year, and day of the week that the schedule begins
-    public static String getStartDow(){
-        Scanner keyboard = new Scanner(System.in); 
-        
+    //This method asks for and records day of the week that the schedule begins
+    public static String getStartDow(){        
         String startDow = "";
        
         System.out.println("On what day of the week does the schedule start? (Ex: Monday) ");
-        startDow = keyboard.nextLine();
-        System.out.println();
+        startDow = keyboard.nextLine(); //records answer
+        System.out.println();  //adds spacing for legibility
         
         return startDow;
     }
     
+    //This method asks for and records the day of the month that the schedule begins
     public static int getStartD(){
-        Scanner keyboard = new Scanner(System.in);  
         int startD;
         
-        System.out.println("On what day of the month does the schedule start? (Ex: 1 for Monday, Dec. 1st) ");
+        System.out.println("On what day of the month does the schedule start? (Ex: Enter '1' for Dec. 1st) ");
         startD = keyboard.nextInt();    
         System.out.println();
         
         return startD;
     }
-        
-        
-    public static int getStartM(){
-        Scanner keyboard = new Scanner(System.in);     
+    
+    //This method asks for and records the month that the schedule begins
+    public static int getStartM(){  
         int startM;
         
         System.out.println("During what month does the schedule begin? ");
-        System.out.println("Enter the month's number. (Ex: For January, enter '1' ");
+        System.out.println("Enter the month's number. (Ex: For January, enter '1') ");
         startM = keyboard.nextInt();    
         System.out.println();
         
         return startM;
     }
-        
-        
+                
+    //This method asks for and records year that the schedule begins
     public static int getStartY(){
-        Scanner keyboard = new Scanner(System.in); 
         int startY;
         
-        System.out.println("During what year does the schedyle start? (Ex: 2017)");
+        System.out.println("During what year does the schedule start? (Ex: 2017)");
         startY = keyboard.nextInt();    
         System.out.println();
         
         return startY;      
     }
     
-    //These asks for and records the day, month, year, and day of the week that the schedule ends
-    public static String getEndDow(){
-        Scanner keyboard = new Scanner(System.in); 
-        
+    //This method asks for and records the day of the week that the schedule ends
+    public static String getEndDow(){        
         String endDow = "";
         
         System.out.println("On what day of the week does the schedule end? (Ex: Friday) ");
@@ -79,8 +66,8 @@ public class ScheduleDates
         return endDow;
     }
         
+    //This method asks for and records the day of the month that the schedule ends
     public static int getEndD(){
-        Scanner keyboard = new Scanner(System.in); 
         int endD;
         
         System.out.println("On which day of the month does the schedule end? (Ex: Enter '14' for Monday, Dec. 14th) ");
@@ -90,8 +77,8 @@ public class ScheduleDates
         return endD;
     }
       
+    //This method asks for and records the month that the schedule ends
     public static int getEndM(){
-        Scanner keyboard = new Scanner(System.in);
         int endM;
         
         System.out.println("During what month does the schedule end? ");
@@ -102,8 +89,8 @@ public class ScheduleDates
         return endM;
     }
     
+    //This method asks for and records year that the schedule ends
     public static int getEndY(){
-        Scanner keyboard = new Scanner(System.in);
         int endY;
         
         System.out.println("During what year does the schedule end? (Ex: 2018)");
@@ -111,8 +98,20 @@ public class ScheduleDates
         System.out.println();
         
         return endY;
+    }  
+    
+    
+    //The main method is here exclusively to test the functionality of all other methods in the class
+    public static void main(String args[])
+    {
+       getStartDow();
+       getStartD();
+       getStartM();
+       getStartY();
+       
+       getEndDow();
+       getEndD();
+       getEndM();
+       getEndY();
     }
-        
-    
-    
 }
