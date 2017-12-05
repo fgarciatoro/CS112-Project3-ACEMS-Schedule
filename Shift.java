@@ -5,7 +5,7 @@ public class Shift { // will define the number of shifts in the main method when
   Member med12;
   Member med13;
   int shiftNum;
-  static ArrayList<Member> allMembers;
+  static ArrayList<Member> allMembers = new ArrayList<Member>();
   public Member findMember(int memRank) {
     Random rand = new Random();
     //for(int i = 0; i < allMembers.size(); i++);
