@@ -5,8 +5,9 @@ public class Shift { // will define the number of shifts in the main method when
   Member med12;
   Member med13;
   int shiftNum;
-  static ArrayList<Member> allMembers = new ArrayList<Member>();
-  public Member findMember(int memRank) {
+  static ArrayList<Member> allMembers = new ArrayList<Member>();  // This will be defined later on
+  // this method finds a member for a given rank and shift
+  public Member findMember(int memRank) { 
     Random rand = new Random();
     //for(int i = 0; i < allMembers.size(); i++);
       //if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 1 && allMembers.get(i).rank == memRank) {
@@ -18,7 +19,9 @@ public class Shift { // will define the number of shifts in the main method when
     //}
     return toReturn;
   }
-public static void defineMembers(ArrayList<ArrayList<String>> readMe){ //call this one before jasonCallThisMethod, as it makes the allMembers array list have things in it
+  // this method is called once, in the allShifts() method, and defines a list of members with name, rank and availability
+  // this list is allMembers, a static arrayList we defined earlier
+public static void defineMembers(ArrayList<ArrayList<String>> readMe){
   Member newMember;
   for(int j = 0; j < readMe.size(); j++) {
      ArrayList<String> eachMember = readMe.get(j);
@@ -26,24 +29,29 @@ public static void defineMembers(ArrayList<ArrayList<String>> readMe){ //call th
     String newRank = eachMember.get(1);
     eachMember.remove(0);
     eachMember.remove(0);
+    // eachMember is now only the availability, since we removed the name and rank
      newMember = new Member(newName, newRank, eachMember);
     allMembers.add(newMember);
     }
 }
+  // This method uses findMember to find the Med-10 for the shift
   public Member find10() {
     return findMember(10);
   }
+  // This method uses findMember to find the Med-12 for the shift
   public Member find12() {
     return findMember(12);
   }
+  //This method uses findMember to find the Med-13 for the shift
   public Member find13() {
     return findMember(13);
   }
-  public Shift(int shiftNum) {
+  //This is the constructor; when we make shifts, which we do in the allShifts() method, it finds 3 members and has an associated number
+  public Shift(int thisShiftNum) {
     med10 = find10();
     med12 = find12();
     med13 = find13();
-    shiftNum=this.shiftNum;
+    shiftNum=thisShiftNum;
   }
    public String getMed10() {
      return med10.name;
@@ -54,9 +62,10 @@ public static void defineMembers(ArrayList<ArrayList<String>> readMe){ //call th
    public String getMed13() {
      return med13.name;
    }
-
-public static ArrayList<Shift> jasonCallThisMethod() {
-  defineMembers(FileReader.JoshCallThis());
+// This is the main output method of this class. It returns an array list of shifts (with a med-10, med-12 and med-13)
+// that is accessed in the calGraph class and used to construct the calendar.
+public static ArrayList<Shift> allShifts() {
+  defineMembers(FileReader.output());
   ArrayList<Shift> shifts = new ArrayList<Shift>();
   Shift newShift;
   for(int i = 0; i < allMembers.get(0).availability.size(); i++) { //this is the number of shifts
