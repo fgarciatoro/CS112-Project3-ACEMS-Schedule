@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class algorithmACEMS{
   static ArrayList<ArrayList<pointedMember>> allPointedMembers = new ArrayList<pointedMember>();
+  static ArrayList<String> priorityBS = new ArrayList<String>();
+  
   //each ArrayList<pointedMember> will be a list ranking all the members for a specific shift
   //and allPointedMembers will be an arraylist of all those lists (i.e. one list for every shift in order)
   
@@ -28,6 +30,7 @@ public static void main(String args[]){
   
   prioritizeFerShifts();
   
+  prioritizeBusyShifts();
  
   }//end bracket for Main()
   
@@ -141,6 +144,15 @@ public static void main(String args[]){
     }//end of i for loop
     
    return; 
+  }
+  
+  public static void prioritizeBusyShifts(){
+    
+    priorityBS = ScheduleDates.getPriorityBS();
+    
+    //do something smart with the startD and startDow string and find the busy shfits and then give points to the members with their string in the priorityBS arraylist for all shifts that are "busy shifts' && tha tthey are available for!!!! **Make sure theyre actually available for that busy shift lol
+    
+    return;
   }
   
 }//end bracket for the whole program 
