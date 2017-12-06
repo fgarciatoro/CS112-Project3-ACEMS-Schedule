@@ -146,12 +146,6 @@ public class ScheduleDates
         return endY;
     }  
     
-    public static ArrayList<String> getPriorityBS(){
-      //I want an arraylist of strings that is the names of members that the user inputs that we will prioritize for busy shifts  
-       //i will call this method in algorithmACEMS.java btw 
-    }
-    
-    
     //The main method is here exclusively to test the functionality of all other methods in the class
     public static void main(String args[])
     {
@@ -164,7 +158,5 @@ public class ScheduleDates
        getEndD();
        getEndM();
        getEndY();
-        
-       getPriorityBS();
     }
 }
