@@ -2,19 +2,19 @@ import java.util.ArrayList
 
 public class pointedMember{
   String name;
-  int points;
+  double points;
 
 public pointedMember(String s){
   name = s;
   return;
 }
 
-public void addPoints(pointedMember m, int toAdd){
+public void addPoints(pointedMember m, double toAdd){
   m.points = (m.points + toAdd);
   return;
 }
 
-public void subtractPoints(pointedMember m, int toSubtract){
+public void subtractPoints(pointedMember m, double toSubtract){
   m.points = (m.points - toSubtract);
   return;
 }
