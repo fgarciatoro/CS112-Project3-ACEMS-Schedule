@@ -62,11 +62,9 @@ public class calGraph  extends JPanel{
 	joshList = Shift.allShifts();
 	    
 	    
-	ArrayList<String> BSmembers = new ArrayList<String>();
+	
 	    
-	BSmembers = VIPMember.getPriorityBS();
-	    
-	algorithmACEMS.doMagic( BSmembers );
+	algorithmACEMS.doMagic( joshList );
 
 	printShifts(g, joshList, startDowInt);
     
