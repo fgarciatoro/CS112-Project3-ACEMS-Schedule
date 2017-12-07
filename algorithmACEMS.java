@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class algorithmACEMS{
   static ArrayList<ArrayList<pointedMember>> allPointedMembers = new ArrayList<pointedMember>();
-  static ArrayList<String> priorityBS = new ArrayList<String>();
+  static ArrayList<String> BSmembers = new ArrayList<String>();
   
   //each ArrayList<pointedMember> will be a list ranking all the members for a specific shift
   //and allPointedMembers will be an arraylist of all those lists (i.e. one list for every shift in order)
@@ -26,9 +26,9 @@ public static void main(String args[]){
   
   defineAllPointedMembers();
   
-  prioritizeFewMembers();
+  prioritizeShiftsWithFewMembers();
   
-  prioritizeFerShifts();
+  prioritizeMembersWithFewShifts();
   
   prioritizeBusyShifts();
  
@@ -65,7 +65,7 @@ public static void main(String args[]){
     return;
   }
 
-  public static void prioritizeFewMembers(){ 
+  public static void prioritizeShiftsWithFewMembers(){ 
     //this assigns additional points to members on shifts where there are relatively few members that can take the shift 
     //Note: This method DOES take into account the ifNeedBe members for each shift, so if theres 2 yesses and 1 ifNeedBe, the person with the ifNeedBe will still get some bonus points
     
@@ -122,7 +122,7 @@ public static void main(String args[]){
     return;
   }
   
-  public static void prioritizeFewShifts(){
+  public static void prioritizeMembersWithFewShifts(){
     //Note: this method does not take into account hte ifNeedBe shifts, it only counts the number of shifts that a member can take ("1") and assigns according to that
     
     for(int i = 0; i < Shift.allMembers.size(); i++){
@@ -148,10 +148,53 @@ public static void main(String args[]){
   
   public static void prioritizeBusyShifts(){
     
-    priorityBS = ScheduleDates.getPriorityBS();
-    
-    //do something smart with the startD and startDow string and find the busy shfits and then give points to the members with their string in the priorityBS arraylist for all shifts that are "busy shifts' && tha tthey are available for!!!! **Make sure theyre actually available for that busy shift lol
-    
+	  BSmembers = VIPMember.getPriorityBS();
+     
+    if(calGraph.startDow.equals("Sunday")){
+        fridayPM = 12;
+        saturdayPM = 14;
+      }
+    if(calGraph.startDow.equals("Monday")){
+        fridayPM = 10;
+        saturdayPM = 12;
+      }
+    if(calGraph.startDow.equals("Tuesday")){
+        fridayPM = 8;
+        saturdayPM = 10;
+      }
+    if(calGraph.startDow.equals("Wednesday")){
+        fridayPM = 6;
+        saturdayPM = 8;
+      }
+    if(calGraph.startDow.equals("Thursday")){
+        fridayPM = 4;
+        saturdayPM = 6;
+      }
+    if(calGraph.startDow.equals("Friday")){
+        fridayPM = 2;
+        saturdayPM = 4;
+      }
+    if(calGraph.startDow.equals("Saturday")){
+        fridayPM = 14;
+        saturdayPM = 2;
+      }
+  
+        for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
+          for(int k = 0; k < Shift.allMembers.size(); k++){
+            
+            if( ( (j == fridayPM) || (j == saturdayPM) ) && Shift.allMembers.get(k).availability.get(j).equals("1") && BSmembers.contains(Shift.allMembers.get(k).name) ){
+              
+              
+              allPointedMembers.get(j).get(k).addPoints(20);
+              //this selectsthe right pointedMember because the order of pintedMembers for each shift is in the same order of all the members in Shifts.allMembers()
+              //also for right now, I'm adding 20 points for each priority BS person, we can change that though
+              
+            }//end of if
+          }//end of k for loop
+          
+        }//end of j for loop
+  
+   
     return;
   }
   
