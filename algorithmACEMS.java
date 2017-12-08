@@ -18,7 +18,7 @@ public static void main(String args[]){
  
   }//end bracket for Main()
 	
-public static ArrayList<String> getSortedShifts(){
+public static ArrayList<pointedMember> getSortedShifts(){
 	//this is the only method that will be called in calGraph and it will return the proper list for the shifts. This method also calls all the other computational methods in this program
 	//as of now, we will be calling this method/doing this 3 times (once for each rank) 
   defineAllPointedMembers();
