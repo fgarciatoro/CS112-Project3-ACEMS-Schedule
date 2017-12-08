@@ -82,39 +82,45 @@ public static void defineAllPointedMembers(){
     //Note: This method DOES take into account the ifNeedBe members for each shift, so if theres 2 yesses and 1 ifNeedBe, the person with the ifNeedBe will still get some bonus points
     
     //this is the new way im doing it:
-      ArrayList<Double> numWithPoints = new ArrayList<Double>();
-
-      //There's issues with this ArrayList<Double> stuff here...
+    
 
       
+
    for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
 
-	 numWithPoints.add(0.0);
+      double numWithPoints = 0.0;
 	 
       for(int i = 0; i < Shift.allMembers.size(); i++){
    
         if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
-    
-	    numWithPoints.get(j).set(j, (numWithPoints.get(j)+1.0) );
+       
+	    numWithPoints = numWithPoints + 1;
         }
         if( Shift.allMembers.get(i).availability.get(j).equals("0") ){
-       
-	    numWithPoints.get(j).set(j, (numWithPoints.get(j)+.5) );
+       	   
+	     numWithPoints = numWithPoints + .5;
         }
        
       }//end of i for loop
+
+   
+      for(int k = 0; k < allPointedMembers.get(0).size(); k++){
+
+	  if( Shift.allMembers.get(k).availability.get(j).equals("1") || Shift.allMembers.get(k).availability.get(j).equals("0") ){
+         double pointsToAdd = (Shift.allMembers.size()/numWithPoints );
+         allPointedMembers.get(j).get(k).addPoints( pointsToAdd ); 
+        }//end of if statement
+	
+      }//end of k for loop
+      
       
      }//end of j for loop
      //now each index of numWithPoints is a double for each shift (by formula yes =+1 ifNeedBe =+.5)
     
-    for(int i = 0; i < allPointedMembers.size(); i++){
-      for(int j = 0; j < allPointedMembers.get(0).size(); j++){
-        if( Shift.allMembers.get(j).availability.get(i).equals("1") || Shift.allMembers.get(j).availability.get(i).equals("0") ){
-         double pointsToAdd = (Shift.allMembers.size()/numWithPoints.get(i) );
-         allPointedMembers.get(i).get(j).addPoints( pointsToAdd ); 
-        }//end of if statement
-      }//end of j2 for loop
-     }//end of i2 for loop
+ 
+    
+      
+
     
     
     
