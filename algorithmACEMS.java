@@ -87,10 +87,10 @@ public static void defineAllPointedMembers(){
    
       for(int j = 0; j < Shift.allMembers.get(i).availability.size(); j++){
         double temp = numWithPoints.get(i);
-        if( Shift.allMembers.get(j).availavility.get(i).equals("1") ){
+        if( Shift.allMembers.get(j).availability.get(i).equals("1") ){
          temp = temp + 1;
         }
-        if( Shift.allMembers.get(j).availavility.get(i).equals("0") ){
+        if( Shift.allMembers.get(j).availability.get(i).equals("0") ){
          temp = temp + .5;
         }
         numWithPoints.set(i, temp);
