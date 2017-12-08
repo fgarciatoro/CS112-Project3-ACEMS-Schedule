@@ -12,7 +12,8 @@ public class calGraph  extends JPanel{
     public static final int BOX_WIDTH = 1400;
     public static final int BOX_HEIGHT = 800;
     
-
+  
+    
     public calGraph(){
         this.setPreferredSize(new Dimension(BOX_WIDTH, BOX_HEIGHT));
     }
@@ -32,8 +33,8 @@ public class calGraph  extends JPanel{
 
 	    
 	
-	     
-		String startDow = ScheduleDates.getStartDow();
+
+	String startDow = ScheduleDates.getStartDow();
         int startD = ScheduleDates.getStartD();
         int startM = ScheduleDates.getStartM();
         int startY = ScheduleDates.getStartY();
@@ -64,7 +65,7 @@ public class calGraph  extends JPanel{
 	    
 	ArrayList<pointedMember> sortedShifts= new ArrayList<pointedMember>();
 	
-        sortedShifts = algorithmACEMS.getSortedShifts();
+        sortedShifts = algorithmACEMS.getSortedShifts(startDow);
 	
 
 	printShifts(g, joshList, startDowInt);
