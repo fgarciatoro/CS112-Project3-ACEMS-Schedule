@@ -62,9 +62,10 @@ public class calGraph  extends JPanel{
 	joshList = Shift.allShifts();
 	    
 	    
+	ArrayList<pointedMember> sortedShifts= new ArrayList<pointedMember>();
 	
-	    
-	algorithmACEMS.doMagic( joshList );
+        sortedShifts = algorithmACEMS.getSortedShifts();
+	
 
 	printShifts(g, joshList, startDowInt);
     
