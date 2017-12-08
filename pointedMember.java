@@ -10,12 +10,12 @@ public pointedMember(String s, double d){
   return;
 }
 
-public void addPoints(pointedMember m, double toAdd){
+public void addPoints(double toAdd){
   m.points = (m.points + toAdd);
   return;
 }
 
-public void subtractPoints(pointedMember m, double toSubtract){
+public void subtractPoints(double toSubtract){
   m.points = (m.points - toSubtract);
   return;
 }
