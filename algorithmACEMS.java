@@ -59,7 +59,7 @@ public static void defineAllPointedMembers(){
           pointedMember temp = new pointedMember(tempName, 0);
 
           if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
-            double pointsToAdd = (Shift.allmembers.size());
+            double pointsToAdd = (Shift.allMembers.size());
             temp.addPoints(pointsToAdd);
           }
           if( Shift.allMembers.get(i).availability.get(j).equals("0") ){
