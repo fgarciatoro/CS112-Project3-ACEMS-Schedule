@@ -81,11 +81,6 @@ public static void defineAllPointedMembers(){
     //this assigns additional points to members on shifts where there are relatively few members that can take the shift 
     //Note: This method DOES take into account the ifNeedBe members for each shift, so if theres 2 yesses and 1 ifNeedBe, the person with the ifNeedBe will still get some bonus points
     
-    //this is the new way im doing it:
-    
-
-      
-
    for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
 
       double numWithPoints = 0.0;
@@ -115,37 +110,7 @@ public static void defineAllPointedMembers(){
       
       
      }//end of j for loop
-     //now each index of numWithPoints is a double for each shift (by formula yes =+1 ifNeedBe =+.5)
     
- 
-    
-      
-
-    
-    
-    
-    
-    //Below was my first attempt at this, but I think the above set up is better and actually works
-   /* 
-    for(int i = 0; i < allPointedMembers.size(); i++){
-    double numWithPoints;
-      for(int j = 0; j < allPointedMembers.get(0).size(); j++){
-        if(allPointedMembers.get(i).get(j).points > 0){
-         numWithPoints++; 
-        }
-      
-      }//end of j1 for loop 
-      for(int j = 0; j < allPointedMembers.get(0).size(); j++){
-        if(allPointedMembers.get(i).get(j).points > 0){
-         double pointsToAdd = (Shift.allMembers.size()/numWithPoints);
-         allPointedMembers.get(i).get(j).addPoints( pointsToAdd ); 
-        }
-      }//end of j2 for loop
-    }//end of i for loop 
-    
-    //do some if < 2 then put in the if need b estuff as well
-    
-    */
     return;
   }
   
