@@ -29,9 +29,9 @@ public static ArrayList<String> getSortedShifts(){
   
   prioritizeBusyShifts();
 	
-	ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>;
+	ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>();
 	
-	for(int i = 0l i < allPointedMembers.size(); i++){
+	for(int i = 0; i < allPointedMembers.size(); i++){
 		sortedShifts.add( allPointedMembers.get(i).get(0) );
 		
 		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
@@ -82,7 +82,7 @@ public static void defineAllPointedMembers(){
     //Note: This method DOES take into account the ifNeedBe members for each shift, so if theres 2 yesses and 1 ifNeedBe, the person with the ifNeedBe will still get some bonus points
     
     //this is the new way im doing it:
-     ArrayList<double> numWithPoints = new ArrayList<double>;
+     ArrayList<double> numWithPoints = new ArrayList<double>();
      for(int i = 0; i < Shift.allMembers.size(); i++){
    
       for(int j = 0; j < Shift.allMembers.get(i).availability.size(); j++){
