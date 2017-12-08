@@ -162,6 +162,9 @@ public static void defineAllPointedMembers(){
     
 	  BSmembers = VIPMember.getPriorityBS();
      
+	  int fridayPM = 0;
+	  int saturdayPM = 0;
+	  
     if(calGraph.startDow.equals("Sunday")){
         fridayPM = 12;
         saturdayPM = 14;
