@@ -18,7 +18,7 @@ public static void main(String args[]){
  
   }//end bracket for Main()
 	
-public static ArrayList<pointedMember> getSortedShifts(){
+public static ArrayList<pointedMember> getSortedShifts(String startDow){
 	//this is the only method that will be called in calGraph and it will return the proper list for the shifts. This method also calls all the other computational methods in this program
 	//as of now, we will be calling this method/doing this 3 times (once for each rank) 
   defineAllPointedMembers();
@@ -27,11 +27,11 @@ public static ArrayList<pointedMember> getSortedShifts(){
   
   prioritizeMembersWithFewShifts();
   
-  prioritizeBusyShifts();
+  prioritizeBusyShifts(startDow);
 	
-	ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>();
+  ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>();
 	
-	for(int i = 0; i < allPointedMembers.size(); i++){
+  for(int i = 0; i < allPointedMembers.size(); i++){
 		sortedShifts.add( allPointedMembers.get(i).get(0) );
 		
 		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
@@ -56,7 +56,7 @@ public static void defineAllPointedMembers(){
 
         for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
 
-          pointedMember temp = new pointedMember(tempName, 0);
+	    pointedMember temp = new pointedMember(tempName, 0);
 
           if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
             double pointsToAdd = (Shift.allMembers.size());
@@ -82,20 +82,29 @@ public static void defineAllPointedMembers(){
     //Note: This method DOES take into account the ifNeedBe members for each shift, so if theres 2 yesses and 1 ifNeedBe, the person with the ifNeedBe will still get some bonus points
     
     //this is the new way im doing it:
-     ArrayList<double> numWithPoints = new ArrayList<double>();
-     for(int i = 0; i < Shift.allMembers.size(); i++){
+      ArrayList<Double> numWithPoints = new ArrayList<Double>();
+
+      //There's issues with this ArrayList<Double> stuff here...
+
+      
+   for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
+
+	 numWithPoints.add(0.0);
+	 
+      for(int i = 0; i < Shift.allMembers.size(); i++){
    
-      for(int j = 0; j < Shift.allMembers.get(i).availability.size(); j++){
-        double temp = numWithPoints.get(i);
-        if( Shift.allMembers.get(j).availability.get(i).equals("1") ){
-         temp = temp + 1;
+        if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
+    
+	    numWithPoints.get(j).set(j, (numWithPoints.get(j)+1.0) );
         }
-        if( Shift.allMembers.get(j).availability.get(i).equals("0") ){
-         temp = temp + .5;
+        if( Shift.allMembers.get(i).availability.get(j).equals("0") ){
+       
+	    numWithPoints.get(j).set(j, (numWithPoints.get(j)+.5) );
         }
-        numWithPoints.set(i, temp);
-      }//end of j1 for loop 
-     }//end of i for loop
+       
+      }//end of i for loop
+      
+     }//end of j for loop
      //now each index of numWithPoints is a double for each shift (by formula yes =+1 ifNeedBe =+.5)
     
     for(int i = 0; i < allPointedMembers.size(); i++){
@@ -158,38 +167,40 @@ public static void defineAllPointedMembers(){
    return; 
   }
   
-  public static void prioritizeBusyShifts(){
+  public static void prioritizeBusyShifts(String startDow){
     
 	  BSmembers = VIPMember.getPriorityBS();
-     
+
 	  int fridayPM = 0;
 	  int saturdayPM = 0;
+
+
 	  
-    if(calGraph.startDow.equals("Sunday")){
+    if(startDow.equals("Sunday")){
         fridayPM = 12;
         saturdayPM = 14;
       }
-    if(calGraph.startDow.equals("Monday")){
+    if(startDow.equals("Monday")){
         fridayPM = 10;
         saturdayPM = 12;
       }
-    if(calGraph.startDow.equals("Tuesday")){
+    if(startDow.equals("Tuesday")){
         fridayPM = 8;
         saturdayPM = 10;
       }
-    if(calGraph.startDow.equals("Wednesday")){
+    if(startDow.equals("Wednesday")){
         fridayPM = 6;
         saturdayPM = 8;
       }
-    if(calGraph.startDow.equals("Thursday")){
+    if(startDow.equals("Thursday")){
         fridayPM = 4;
         saturdayPM = 6;
       }
-    if(calGraph.startDow.equals("Friday")){
+    if(startDow.equals("Friday")){
         fridayPM = 2;
         saturdayPM = 4;
       }
-    if(calGraph.startDow.equals("Saturday")){
+    if(startDow.equals("Saturday")){
         fridayPM = 14;
         saturdayPM = 2;
       }
