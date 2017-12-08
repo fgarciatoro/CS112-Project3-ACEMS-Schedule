@@ -16,7 +16,7 @@ public void addPoints(double toAdd){
 }
 
 public void subtractPoints(double toSubtract){
-    points = points - toAdd;
+    points = points - toSubtract;
   return;
 }
 
