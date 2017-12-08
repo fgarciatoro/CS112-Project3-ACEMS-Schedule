@@ -13,17 +13,14 @@ public algorithmACEMS(){
 
 }
 
-public static void assignPoints(){
-  
-}
-
-//so we call Shift(int shiftNum) with the variable shiftNum, so we need to use that s the index for the ith availability of all the members and put that into an ArrayList<ArrayList<String memberName>> so that for each shift we know which members can take it
-  
-  //Then, we will parse through that double arraylist and for each shift, the people who are amrked yes get ( 1000/numPeopleWhoCanTakeThisShift ) (becuase even if like 20 people can take the shift, they'll all still get something which relatively will make it so that the one with the most points gets it, I think...) and maybe people get like 10 points or something  
-
 public static void main(String args[]){
-  //this main is probably going to go but like for now, this will just be wear the bulk of the arguments is 
-  
+  //so nothing actually needs to happen in here, so do we actually need a main?...
+ 
+  }//end bracket for Main()
+	
+public static ArrayList<String> getSortedShifts(){
+	//this is the only method that will be called in calGraph and it will return the proper list for the shifts. This method also calls all the other computational methods in this program
+	//as of now, we will be calling this method/doing this 3 times (once for each rank) 
   defineAllPointedMembers();
   
   prioritizeShiftsWithFewMembers();
@@ -31,10 +28,25 @@ public static void main(String args[]){
   prioritizeMembersWithFewShifts();
   
   prioritizeBusyShifts();
- 
-  }//end bracket for Main()
-  
-  public static void defineAllPointedMembers(){
+	
+	ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>;
+	
+	for(int i = 0l i < allPointedMembers.size(); i++){
+		sortedShifts.add( allPointedMembers.get(i).get(0) );
+		
+		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
+			
+			if(sortedShifts.get(i).points < allPointedMembers.get(i).get(j).points){
+			sortedShifts.set(i, allPointedMembers.get(i).get(j) );
+			}
+		
+		}//end of j for loop
+	}//end of i for loop
+	
+	return sortedShifts;
+}
+	
+public static void defineAllPointedMembers(){
     
     Shift.defineMembers(FileReader.output());
   
@@ -197,5 +209,7 @@ public static void main(String args[]){
    
     return;
   }
+	
+
   
 }//end bracket for the whole program 
