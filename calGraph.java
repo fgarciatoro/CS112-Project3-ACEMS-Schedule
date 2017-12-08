@@ -62,7 +62,9 @@ public class calGraph  extends JPanel{
 
 	joshList = Shift.allShifts();
 	    
-	    
+
+	//either we change it so that this calls printShifts(sortedShifts) three times, or we change algorithmACEMS so that it's called in Shift and then the joshList that this calls is the proper thing to print
+	
 	ArrayList<pointedMember> sortedShifts= new ArrayList<pointedMember>();
 	
         sortedShifts = algorithmACEMS.getSortedShifts(startDow);
