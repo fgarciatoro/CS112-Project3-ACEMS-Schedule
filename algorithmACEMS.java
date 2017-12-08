@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class algorithmACEMS{
-  static ArrayList<ArrayList<pointedMember>> allPointedMembers = new ArrayList<pointedMember>();
+  static ArrayList<ArrayList<pointedMember>> allPointedMembers = new ArrayList<ArrayList<pointedMember>>();
   static ArrayList<String> BSmembers = new ArrayList<String>();
   
   //each ArrayList<pointedMember> will be a list ranking all the members for a specific shift
