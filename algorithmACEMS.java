@@ -146,7 +146,7 @@ public static void defineAllPointedMembers(){
         }
       }//end of j1 for loop
       
-      for(int j = 0; j < Shift.allmembers.get(i).availability.size(); j++){
+      for(int j = 0; j < Shift.allMembers.get(i).availability.size(); j++){
         if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
           double pointsToAdd = (allPointedMembers.size()/numShifts);
           allPointedMembers.get(j).get(i).addPoints( pointsToAdd );
