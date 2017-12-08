@@ -4,8 +4,9 @@ public class pointedMember{
   String name;
   double points;
 
-public pointedMember(String s){
+public pointedMember(String s, double d){
   name = s;
+  points = d;
   return;
 }
 
