@@ -14,10 +14,9 @@ public algorithmACEMS(){
 }
 
 	
-public static ArrayList<Member> getSortedShifts(String startDow){
+public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 	//this is the only method that will be called in calGraph and it will return the proper list for the shifts. This method also calls all the other computational methods in this program
 	//as of now, we will be calling this method/doing this 3 times (once for each rank) 
-  defineAllPointedMembers();
   
   prioritizeShiftsWithFewMembers();
   
@@ -28,7 +27,11 @@ public static ArrayList<Member> getSortedShifts(String startDow){
   ArrayList<Member> sortedShifts = new ArrayList<Member>();
 	
   for(int i = 0; i < allPointedMembers.size(); i++){
-		sortedShifts.add( allPointedMembers.get(i).get(0) );
+	  for(int k = 0; k < allPointedMembers.get(i).size(); k++) {
+		if(allPointedMembers.get(i).get(k).rank.equals(rank1)) {
+		  sortedShifts.add( allPointedMembers.get(i).get(0) );
+		}
+	  }
 	
 		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
 			
