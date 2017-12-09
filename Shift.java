@@ -6,19 +6,6 @@ public class Shift { // will define the number of shifts in the main method when
   Member med13;
   int shiftNum;
   static ArrayList<Member> allMembers = new ArrayList<Member>();  // This will be defined later on
-  // this method finds a member for a given rank and shift
-  public Member findMember(int memRank) { 
-    Random rand = new Random();
-    //for(int i = 0; i < allMembers.size(); i++);
-      //if(allMembers.get(i).numShifts < 4 && allMembers.get(i).availability.get(shiftNum) == 1 && allMembers.get(i).rank == memRank) {
-        //Member toReturn = allMembers.get(i);
-        //allMembers.get(i).plusShifts();
-        //break;
-      //}
-    Member toReturn =  allMembers.get(rand.nextInt(allMembers.size()));
-    //}
-    return toReturn;
-  }
   // this method is called once, in the allShifts() method, and defines a list of members with name, rank and availability
   // this list is allMembers, a static arrayList we defined earlier
 public static void defineMembers(ArrayList<ArrayList<String>> readMe){
@@ -34,17 +21,6 @@ public static void defineMembers(ArrayList<ArrayList<String>> readMe){
     allMembers.add(newMember);
     }
 }
-  // This method uses findMember to find the Med-10 for the shift
-  public Member find10() {
-    return findMember(10);
-  }
-  // This method uses findMember to find the Med-12 for the shift
-  public Member find12() {
-    return findMember(12);
-  }
-  //This method uses findMember to find the Med-13 for the shift
-  public Member find13() {
-    return findMember(13);
   }
   //This is the constructor; when we make shifts, which we do in the allShifts() method, it finds 3 members and has an associated number
   public Shift(int thisShiftNum) {
