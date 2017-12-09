@@ -411,7 +411,7 @@ public class calGraph  extends JPanel{
 
 	      
 	       
-	       if(startDowInt==7){
+	       if(startDowInt==8){
 		   j++;
 		   startDowInt = 1;
 	       }
