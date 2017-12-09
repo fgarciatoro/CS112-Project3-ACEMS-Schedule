@@ -8,7 +8,7 @@ public class Shift { // will define the number of shifts in the main method when
   static ArrayList<Member> allMembers = new ArrayList<Member>();  // This will be defined later on
   // this method is called once, in the allShifts() method, and defines a list of members with name, rank and availability
   // this list is allMembers, a static arrayList we defined earlier
-public static void defineMembers(ArrayList<ArrayList<String>> readMe){
+/* public static void defineMembers(ArrayList<ArrayList<String>> readMe){
   Member newMember;
   for(int j = 0; j < readMe.size(); j++) {
      ArrayList<String> eachMember = readMe.get(j);
@@ -22,11 +22,12 @@ public static void defineMembers(ArrayList<ArrayList<String>> readMe){
     }
 }
   }
+  */
   //This is the constructor; when we make shifts, which we do in the allShifts() method, it finds 3 members and has an associated number
-  public Shift(int thisShiftNum) {
-    med10 = find10();
-    med12 = find12();
-    med13 = find13();
+  public Shift(Member 1, Member 2, Member 3, int thisShiftNum) {
+    med10 = 1;
+    med12 = 2;
+    med13 = 3;
     shiftNum=thisShiftNum;
   }
    public String getMed10() {
