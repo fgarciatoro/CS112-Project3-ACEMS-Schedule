@@ -21,21 +21,23 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
   prioritizeShiftsWithFewMembers();
   
   prioritizeMembersWithFewShifts();
-  
+  System.out.println("For Med-" + rank1 + "s:");
   prioritizeBusyShifts(startDow);
+
 	
   ArrayList<Member> sortedShifts = new ArrayList<Member>();
 	
   for(int i = 0; i < allPointedMembers.size(); i++){
 	  for(int k = 0; k < allPointedMembers.get(i).size(); k++) {
 		if(allPointedMembers.get(i).get(k).rank.equals(rank1)) {
-		  sortedShifts.add( allPointedMembers.get(i).get(0) );
+		  sortedShifts.add( allPointedMembers.get(i).get(k) );
+      break;
 		}
 	  }
 	
 		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
 			
-			if(sortedShifts.get(i).rank.equals(rank1)) {
+			if(allPointedMembers.get(i).get(j).rank.equals(rank1)) {
 				
 			if((sortedShifts.get(i).points < allPointedMembers.get(i).get(j).points)){
 			sortedShifts.set(i, allPointedMembers.get(i).get(j) );
@@ -44,6 +46,8 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 		
 		}//end of j for loop
 	}//end of i for loop
+
+  System.out.println(sortedShifts.size());
 
 
 	return sortedShifts;
@@ -71,7 +75,7 @@ public static void defineAllPointedMembers(){
 		
 		tempRank = Shift.allMembers.get(i).rank;
 	    
-	    Member temp = new Member(tempName, tempRank, Shift.allmembers.get(i).availability);
+	    Member temp = new Member(tempName, tempRank, Shift.allMembers.get(i).availability);
 
           if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
             double pointsToAdd = (Shift.allMembers.size()+0.0);
