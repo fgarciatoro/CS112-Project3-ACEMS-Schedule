@@ -58,9 +58,7 @@ public class calGraph  extends JPanel{
 	
 	paintDateStrings(g, startDowInt, startM, startMstring, changeAt, startD, startDow, startY, endM, endD, endY);
 
-	ArrayList<Shift> joshList = new ArrayList<Shift>();
 
-	joshList = Shift.allShifts();
 	    
 
 	//either we change it so that this calls printShifts(sortedShifts) three times, or we change algorithmACEMS so that it's called in Shift and then the joshList that this calls is the proper thing to print
@@ -70,7 +68,7 @@ public class calGraph  extends JPanel{
         sortedShifts = algorithmACEMS.getSortedShifts(startDow);
 	
 
-	printShifts(g, joshList, startDowInt);
+	printShifts(g, sortedShifts, startDowInt);
     
     }
    
@@ -336,13 +334,49 @@ public class calGraph  extends JPanel{
 
     }
     
-    public static void printShifts(Graphics g, ArrayList<Shift> joshList, int startDowInt){
+    public static void printShifts(Graphics g, ArrayList<pointedMember> joshList, int startDowInt){
 
 	//for this program, this works assuming that the schedule start on an AM shift every time
 	int j = 0;
 	int ampm = 2;
 	for(int i = 0; i < joshList.size(); i++){
 
+
+
+	    if( (ampm % 2) == 0){
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).name , 120+ (150* (startDowInt-1) ) , 76+152*j);
+
+	       g.setColor(Color.BLACK);
+	       // g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) , 95+152*j);
+
+	       g.setColor(Color.BLACK);
+	       // g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 114+152*j);
+	      
+			      
+	       ampm++;
+	    }
+
+	   else{
+	       g.setColor(Color.BLACK);
+	       g.drawString( joshList.get(i).name , 120+ (150* (startDowInt-1) ) , 133+152*j);
+
+	       g.setColor(Color.BLACK);
+	       // g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) ,152+152*j);
+
+	       g.setColor(Color.BLACK);
+	       //g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 171+152*j);
+
+	       
+	       ampm++;
+	       startDowInt++;
+		
+	    }
+
+
+
+
+	    /*
 	    if( (ampm % 2) == 0){
 	       g.setColor(Color.BLACK);
 	       g.drawString( joshList.get(i).getMed10() , 120+ (150* (startDowInt-1) ) , 76+152*j);
@@ -372,7 +406,7 @@ public class calGraph  extends JPanel{
 	       startDowInt++;
 		
 	    }
-
+	    */
 	       
 
 	      
