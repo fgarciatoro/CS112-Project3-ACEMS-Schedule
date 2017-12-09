@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class algorithmACEMS{
-  static ArrayList<ArrayList<pointedMember>> allPointedMembers = new ArrayList<ArrayList<pointedMember>>();
+  static ArrayList<ArrayList<Member>> allPointedMembers = new ArrayList<ArrayList<Member>>();
   static ArrayList<String> BSmembers = new ArrayList<String>();
   
   //each ArrayList<pointedMember> will be a list ranking all the members for a specific shift
@@ -13,12 +13,8 @@ public algorithmACEMS(){
 
 }
 
-public static void main(String args[]){
-  //so nothing actually needs to happen in here, so do we actually need a main?...
- 
-  }//end bracket for Main()
 	
-public static ArrayList<pointedMember> getSortedShifts(String startDow){
+public static ArrayList<Member> getSortedShifts(String startDow){
 	//this is the only method that will be called in calGraph and it will return the proper list for the shifts. This method also calls all the other computational methods in this program
 	//as of now, we will be calling this method/doing this 3 times (once for each rank) 
   defineAllPointedMembers();
@@ -29,16 +25,18 @@ public static ArrayList<pointedMember> getSortedShifts(String startDow){
   
   prioritizeBusyShifts(startDow);
 	
-  ArrayList<pointedMember> sortedShifts = new ArrayList<pointedMember>();
+  ArrayList<Member> sortedShifts = new ArrayList<Member>();
 	
   for(int i = 0; i < allPointedMembers.size(); i++){
-     
 		sortedShifts.add( allPointedMembers.get(i).get(0) );
 	
 		for(int j = 0; j < allPointedMembers.get(0).size(); j++){
 			
-			if(sortedShifts.get(i).points < allPointedMembers.get(i).get(j).points){
+			if(sortedShifts.get(i).rank.equals(rank1)) {
+				
+			if((sortedShifts.get(i).points < allPointedMembers.get(i).get(j).points)){
 			sortedShifts.set(i, allPointedMembers.get(i).get(j) );
+			}
 			}
 		
 		}//end of j for loop
@@ -54,20 +52,23 @@ public static void defineAllPointedMembers(){
 
     for(int i = 0; i < Shift.allMembers.get(0).availability.size(); i++){
 
-	 ArrayList<pointedMember> tempAL = new ArrayList<pointedMember>();	  
+	 ArrayList<Member> tempAL = new ArrayList<Member>();	  
 	  allPointedMembers.add(tempAL);
 
     }
 
         String tempName = "";
+	String tempRank = "";
 	
      for(int j = 0; j < Shift.allMembers.get(0).availability.size(); j++){
        
         for(int i = 0; i < Shift.allMembers.size(); i++){
 
 	    tempName = Shift.allMembers.get(i).name;
+		
+		tempRank = Shift.allMembers.get(i).rank;
 	    
-	    pointedMember temp = new pointedMember(tempName, 0);
+	    Member temp = new Member(tempName, tempRank, Shift.allmembers.get(i).availability);
 
           if( Shift.allMembers.get(i).availability.get(j).equals("1") ){
             double pointsToAdd = (Shift.allMembers.size()+0.0);
