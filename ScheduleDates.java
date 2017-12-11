@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Class ScheduleDates asks for and records the day, month, year, and day of the week that schedules start and end
+ * Class ScheduleDates asks for and records the day, month, year, and day of the week that schedules start and end.
  * 
  * @author Fernando Garcia Toro, Jason Greenfield
  * @version 12/5/2017
