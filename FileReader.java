@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Class FileReader reads a .cvs (Comma Separated Value) file.
+ * Class FileReader reads a .csv (Comma Separated Value) file.
  * 
  * The following sources were used/referenced in the making of this file:
  *      -https://stackoverflow.com/questions/14274259/read-csv-with-scanner
@@ -17,7 +17,7 @@ import java.io.FileNotFoundException;
 
 public class FileReader
 {          
-    //This method will get us the name of the file
+    //This method will gets the name of the file
     public static String getFile(){
        Scanner keyboard = new Scanner(System.in); 
        
@@ -32,12 +32,12 @@ public class FileReader
     public static ArrayList<ArrayList<String>> output(){
        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(); //creates an ArrayList of String ArraayLists
         
-       File file = new File (getFile());  //gives us the name of the file to use
+       File file = new File (getFile());  //gives the name of the file to use
        
        //It is necessary to catch an exception in case the file cannot be found
         try{
            Scanner sc = new Scanner(file);
-           sc.useDelimiter(",");             //we are using .csv (comma separated value) files exclusively
+           sc.useDelimiter(",");             //.csv (comma separated value) files are used exclusively
              
            list = fillArrayList(sc);        //fills the ArrayList
            
@@ -57,7 +57,7 @@ public class FileReader
         int counter = 0;            //This will lead us through list
         
         while(sc.hasNext()){
-            ArrayList<String> fileData = new ArrayList<String>(); //creates ArrayList of Strings that we will populate
+            ArrayList<String> fileData = new ArrayList<String>(); //creates ArrayList of Strings that will be populated
             nextValue = sc.next();
             
             //"EST" is found in every data value preceding a name, this checks for it
@@ -69,17 +69,17 @@ public class FileReader
             if ( nameNext && !nextValue.contains("EST") ){
                 list.add(fileData);             //adds new Arraylist to list
                 
-                String name = nextValue.replace('"',' '); //gets rid of quotation marks that GooglForms adds to names
+                String name = nextValue.replace('"',' '); //gets rid of quotation marks that GoogleForms adds to names
                 fileData.add(name);              //fileData gets its first data value   
                 
                 nameNext = false;                //resets for the next name value
                 
-                counter++;
+                counter++;                      //Moves us to the next index in list for the next name
             }else
             
             //These check for and record responses, No = -1, Maybe = 0, Yes = 1
             if ( nextValue.contains("Maybe") ){               
-                fileData = list.get(counter - 1);  //Gives fileData the previous values in its index in list
+                fileData = list.get(counter - 1);  //Gives fileData the previous values in its index in list, the values associated with the current name
 
                 fileData.add("0"); 
             }else
@@ -129,7 +129,7 @@ public class FileReader
     public static void main(String args[]){
        File file = new File (getFile());
        
-       //This will not compile w/o the try-catch
+       //The try-catch is necessary in case the file is not found
        try{
            Scanner sc = new Scanner(file);  
            sc.useDelimiter(",");

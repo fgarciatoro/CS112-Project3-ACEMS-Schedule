@@ -9,6 +9,9 @@ import java.util.ArrayList;
  */
 public class VIPMember
 { 
+    /**This method takes in the names of the people to be prioritized and returns their names
+     * in an Arraylist of Strings. The method ends when 'stop' is typed.
+    */
     public static ArrayList<String> getPriorityBS(){   
         Scanner keyboard = new Scanner(System.in);
         
@@ -32,12 +35,11 @@ public class VIPMember
             }else{
                 vipMembers.add(name);
             }
-        }
-        
+        }     
         return vipMembers;
     }
     
-    
+    //This method prints the ArrayList, it used for debugging
     public static void printArrayList(ArrayList<String> aList){
         int counter = 0;
         
@@ -46,7 +48,7 @@ public class VIPMember
             counter++;
         }
     }
-    
+     //The main method is here exclusively to test the functionality of all other methods in the class
     public static void main(String args[]){
        printArrayList(getPriorityBS());
     }
