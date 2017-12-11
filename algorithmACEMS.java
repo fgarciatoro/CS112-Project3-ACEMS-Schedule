@@ -29,7 +29,8 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 	
   for(int i = 0; i < allPointedMembers.size(); i++){
 	  for(int k = 0; k < allPointedMembers.get(i).size(); k++) {
-		if(allPointedMembers.get(i).get(k).rank.equals(rank1)) {
+		if(allPointedMembers.get(i).get(k).rank.equals(rank1)&&(i==0|| //This makes it much less likely that one person gets 2 or more shifts in a row
+      allPointedMembers.get(i).get(k).name.equals(sortedShifts.get(i - 1).name)==false)) {
 		  sortedShifts.add( allPointedMembers.get(i).get(k) );
       break;
 		}
@@ -47,7 +48,6 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 		}//end of j for loop
 	}//end of i for loop
 
-  System.out.println(sortedShifts.size());
 
 
 	return sortedShifts;
