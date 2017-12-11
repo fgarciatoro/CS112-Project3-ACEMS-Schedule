@@ -29,8 +29,7 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 	
   for(int i = 0; i < allPointedMembers.size(); i++){
 	  for(int k = 0; k < allPointedMembers.get(i).size(); k++) {
-		if(allPointedMembers.get(i).get(k).rank.equals(rank1)&&(i==0|| //This makes it much less likely that one person gets 2 or more shifts in a row
-      allPointedMembers.get(i).get(k).name.equals(sortedShifts.get(i - 1).name)==false)) {
+		if(allPointedMembers.get(i).get(k).rank.equals(rank1)) {
 		  sortedShifts.add( allPointedMembers.get(i).get(k) );
       break;
 		}
@@ -42,12 +41,33 @@ public static ArrayList<Member> getSortedShifts(String startDow, String rank1){
 				
 			if((sortedShifts.get(i).points < allPointedMembers.get(i).get(j).points)){
 			sortedShifts.set(i, allPointedMembers.get(i).get(j) );
-			}
+
+        }
 			}
 		
 		}//end of j for loop
-	}//end of i for loop
+    // This makes sure that nobody gets more than 4 shifts by subtracting points from the members representing this person
+    // across all of the pieces of PointedMembers, and ensures that nobody gets too many shifts in a row by subtracting all of the points
+    // from the representation of this member in the next 7 shifts once they get 1 shift
+    // Note: Once everyone has more than 4 shifts, it ensures nobody gets more than 8 shifts
+    for(int l = 0; l < allPointedMembers.size(); l++) {
+      for(int m = 0; m < allPointedMembers.get(0).size(); m++) {
+        Member tempMem = allPointedMembers.get(l).get(m);
+        if(tempMem.name.equals(sortedShifts.get(i).name)) {
+        allPointedMembers.get(l).get(m).plusShifts();
+          if(tempMem.numShifts > 0 && tempMem.numShifts % 4 == 0) {
+            allPointedMembers.get(l).get(m).subtractPoints(1000);
+            } // ends the numShifts loop
+            if(i < allPointedMembers.size()-7) {
+              for(int n = 1; n <= 7; n++) {
+                allPointedMembers.get(i+n).get(m).subtractPoints(100000000);
+              }
+            } // ends the pointedMembers.size loops
+          } // ends the name equals loop
 
+      } // end of m for loop
+   } // end of l for loop
+  }//end of i for loop
 
 
 	return sortedShifts;
