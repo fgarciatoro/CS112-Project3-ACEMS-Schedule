@@ -15,7 +15,7 @@ public class VIPMember
     public static ArrayList<String> getPriorityBS(){   
         Scanner keyboard = new Scanner(System.in);
         
-        ArrayList<String> vipMembers = new ArrayList<String>();
+        ArrayList<String> vipMembers = new ArrayList<String>(); //stores the names
         
         Boolean stop = false;
         

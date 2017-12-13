@@ -74,7 +74,7 @@ public class FileReader
                 
                 nameNext = false;                //resets for the next name value
                 
-                counter++;                      //Moves us to the next index in list for the next name
+                counter++;                      //Moves us to the next index in list (for the next name)
             }else
             
             //These check for and record responses, No = -1, Maybe = 0, Yes = 1

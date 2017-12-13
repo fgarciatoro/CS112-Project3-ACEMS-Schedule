@@ -10,7 +10,7 @@ public class ScheduleDates
 {    
     static Scanner keyboard = new Scanner(System.in); //Creates scanner to be used in all methods
     
-    //This method asks for and records day of the week that the schedule begins
+    //This method asks for and records the day of the week that the schedule begins
     public static String getStartDow(){        
         String startDow = "";
         boolean acceptable = false;
