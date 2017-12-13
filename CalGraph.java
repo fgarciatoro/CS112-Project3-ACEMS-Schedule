@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 //unclear if this is the correct scanner import statement
 
-public class calGraph  extends JPanel{
+public class CalGraph  extends JPanel{
     public static final int BOX_WIDTH = 1400;
     public static final int BOX_HEIGHT = 800;
     
   
     
-    public calGraph(){
+    public CalGraph(){
         this.setPreferredSize(new Dimension(BOX_WIDTH, BOX_HEIGHT));
     }
     
@@ -60,18 +60,17 @@ public class calGraph  extends JPanel{
 
 
 	    
-
-	//either we change it so that this calls printShifts(sortedShifts) three times, or we change algorithmACEMS so that it's called in Shift and then the joshList that this calls is the proper thing to print
-	algorithmACEMS.defineAllPointedMembers();
+	//These lines give us an array list of shifts by using the getSortedShifts method in algorithmACEMS for each rank
+	AlgorithmACEMS.defineAllPointedMembers();
 	ArrayList<Member> sortedShifts10= new ArrayList<Member>();
 	ArrayList<Member> sortedShifts12= new ArrayList<Member>();
 	ArrayList<Member> sortedShifts13= new ArrayList<Member>();
 	ArrayList<Shift> allShifts1 = new ArrayList<Shift>();
 	Shift temp;
 	
-        sortedShifts10 = algorithmACEMS.getSortedShifts(startDow,"10");
-	sortedShifts12 = algorithmACEMS.getSortedShifts(startDow,"12");
-	sortedShifts13 = algorithmACEMS.getSortedShifts(startDow,"13");
+        sortedShifts10 = AlgorithmACEMS.getSortedShifts(startDow,"10");
+	sortedShifts12 = AlgorithmACEMS.getSortedShifts(startDow,"12");
+	sortedShifts13 = AlgorithmACEMS.getSortedShifts(startDow,"13");
 	for(int i = 0; i < sortedShifts10.size(); i++) {
 		temp = new Shift(sortedShifts10.get(i),sortedShifts12.get(i),sortedShifts13.get(i));
 		allShifts1.add(temp);
@@ -386,33 +385,6 @@ public class calGraph  extends JPanel{
 	    }
 
 
-
-
-	    /*
-	    if( (ampm % 2) == 0){
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed10() , 120+ (150* (startDowInt-1) ) , 76+152*j);
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) , 95+152*j);
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 114+152*j);
-	      
-			      
-	       ampm++;
-	    }
-	   else{
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed10() , 120+ (150* (startDowInt-1) ) , 133+152*j);
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed12() , 120+ (150* (startDowInt-1) ) ,152+152*j);
-	       g.setColor(Color.BLACK);
-	       g.drawString( joshList.get(i).getMed13() , 120+ (150* (startDowInt-1) ) , 171+152*j);
-	       
-	       ampm++;
-	       startDowInt++;
-		
-	    }
-	    */
 	       
 
 	      
@@ -550,7 +522,7 @@ public class calGraph  extends JPanel{
      public static void main(String args[]){
         JFrame frame = new JFrame("DrawToScreen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new calGraph());
+        frame.setContentPane(new CalGraph());
         frame.pack();
         frame.setVisible(true);
     }
