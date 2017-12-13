@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-public class algorithmACEMS{
-  static ArrayList<ArrayList<Member>> allPointedMembers = new ArrayList<ArrayList<Member>>();
-  static ArrayList<String> BSmembers = new ArrayLimport java.util.ArrayList;
 
 public class AlgorithmACEMS{
   static ArrayList<ArrayList<Member>> allPointedMembers = new ArrayList<ArrayList<Member>>();
