@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
-public class Shift { // will define the number of shifts in the main method when I call it
+public class Shift { 
   Member med10;
   Member med12;
   Member med13;
@@ -37,17 +37,4 @@ public class Shift { // will define the number of shifts in the main method when
    public String getMed13() {
      return med13.name;
    }
-// This is the main output method of this class. It returns an array list of shifts (with a med-10, med-12 and med-13)
-// that is accessed in the calGraph class and used to construct the calendar.
-/*public static ArrayList<Shift> allShifts() {
-  defineMembers(FileReader.output());
-  ArrayList<Shift> shifts = new ArrayList<Shift>();
-  Shift newShift;
-  for(int i = 0; i < allMembers.get(0).availability.size(); i++) { //this is the number of shifts
-    newShift = new Shift(i);
-    shifts.add(newShift);
-  }
-  return shifts;
-}
-*/
 }
